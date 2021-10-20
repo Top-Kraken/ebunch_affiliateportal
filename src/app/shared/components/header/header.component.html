@@ -1,0 +1,82 @@
+
+<mat-toolbar style="background-color: white; color: black; width: 100%; padding: 0px;height: 10vh;">
+   
+    <!-- <mat-divider  style=" height: 6px; width: 100%; background-color: #F9D328;"></mat-divider> -->
+    <!-- <div class="trap">
+        
+            <label>You are in Test Mode</label>
+            <mat-slide-toggle ></mat-slide-toggle>
+
+
+    </div> -->
+
+   
+    <mat-toolbar-row style="width: 100%;margin:auto;">
+        <!-- <div>
+            <img src="assets/images/logo.png" alt="">
+            <span class="text2">- Dealers</span>
+            <button mat-icon-button style="color: rgb(55, 10, 160);" (click)="toggleSideBar()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <div>
+            <a mat-button class="companyName" routerLink="/">
+                <span>Site name</span>
+              </a>
+              <span class="example-spacer"></span>
+              <div fxShow="true" fxHide.lt-md="true">
+                <a mat-button routerLink="/about-us">About us</a>
+                <a mat-button routerLink="/prices">Prices</a>
+                <a mat-button routerLink="/start-page">Start page</a>
+                <a mat-button routerLink="/offer">Offer</a>
+                <a mat-button routerLink="/contact">Contact</a>
+              </div>
+        </div> -->
+        <div class="row w-100 d-none d-md-block">
+            <div class="col-md-12 p-0">
+                <div class="header d-none d-md-flex flex-column flex-md-row justify-content-between align-item-center">
+                    <div class="d-flex my-auto">
+                        <div class="my-auto d-none d-md-block">
+                            <img src="assets/images/logo.png" alt="logo" id="header-logo"> <span class="text2">-Dealers</span>
+                        </div>
+                        <button mat-icon-button style="color: rgb(55, 10, 160);" (click)="toggleSideBar()">
+                            <mat-icon>menu</mat-icon>
+                        </button>
+                    </div>
+                    
+                   
+                    <div class="my-auto d-none d-md-flex">
+                        <button class="btn btn-link headerLink my-auto" (click)="openContactUs()">Contact Us</button>
+                        <button class="btn btn-link headerLink">Support</button>
+                        <div class="my-auto">
+                            <a [href]="userData?.facebookLink" target="_blank">
+                                <img src="assets/images/fb-dark.png" alt="fb" class="headerIcon">
+                            </a>
+                            <a [href]="userData?.linkedinLink" target="_blank">
+                                <img src="assets/images/linkedIn-dark.png" alt="linkedIn" class="headerIcon">
+                            </a>
+                        </div>
+                        
+                        <div id="headerProfileImg">
+                            <img [src]="userPhotoUrl ? userPhotoUrl :'assets/images/profile-pic.png'" alt="" style="width:50px;height:50px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex d-md-none justify-content-center my-3 w-100" id="header-mobile">
+            <div class="d-flex flex-row d-md-none text-center mt-2">
+                <button id="mobileMenu"mat-icon-button style="color: rgb(55, 10, 160);" (click)="toggleSideBar()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <div>
+                    <span id="mobile-dealers-text" class="d-block d-md-none">- Dealers</span>
+                    <img src="assets/images/main-logo-mobile.png" alt="main-logo" id="mobile-logo">
+                    
+                </div>
+
+            </div>
+        </div>
+    </mat-toolbar-row>
+
+</mat-toolbar>
