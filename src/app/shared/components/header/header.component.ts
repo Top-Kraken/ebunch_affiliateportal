@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ContactUsComponent } from 'src/app/pages/contact-us/contact-us.component';
 
 
 @Component({
@@ -28,28 +27,7 @@ export class HeaderComponent implements OnInit {
     this.isExpanded = !this.isExpanded
   }
   openContactUs(){
-    let size = ['675px', '475px'];
-    if (window.innerWidth > 786) {
-      size = ['675px', '420px'];
-    } else {
-      size = ['96%', '500px'];
-    }
-    const dialogRef = this.dialog.open(ContactUsComponent, {
-      width: size[0],
-      height: size[1],
-      data: {},
-      disableClose: false,
-      panelClass:'contact-dialog'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      let query = {
-        type: 'all',
-        sort: '',
-        searchString: '',
-      }
-    });
+    
   }
 }
 

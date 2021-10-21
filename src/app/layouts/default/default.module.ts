@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DefaultComponent } from './default.component';
-import { DashboardComponent } from 'src/app/pages/dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 //import { ProfileComponent } from 'src/app/components/profile/profile.component';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -23,7 +22,6 @@ import {NgbPaginationModule, NgbAlertModule, NgbPopoverModule} from '@ng-bootstr
 @NgModule({
   declarations: [
     DefaultComponent,
-    DashboardComponent
   ],
   imports: [
     CommonModule,
