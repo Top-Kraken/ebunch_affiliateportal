@@ -26,6 +26,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AffiliateRegistrationComponent } from './pages/affiliate-registration/affiliate-registration.component';
 import { AffiliateLoginComponent } from './pages/affiliate-login/affiliate-login.component';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -58,7 +63,8 @@ import { AffiliateLoginComponent } from './pages/affiliate-login/affiliate-login
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAhWahf8oOXf9UyFu8W_iCE8HChcbgOVbQ',
       libraries: ['places']
-    })
+    }),
+    SocialLoginModule
 
   ],
   providers: [
@@ -66,6 +72,24 @@ import { AffiliateLoginComponent } from './pages/affiliate-login/affiliate-login
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
+    },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              'clientId'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('clientId')
+          }
+        ]
+      } as SocialAuthServiceConfig,
     }
   ],
   bootstrap: [AppComponent]

@@ -15,7 +15,7 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
   regForm3: FormGroup;
   regForm2: FormGroup;
   isCompleted1:boolean = true;
-  isCompleted2:boolean = true;
+  isCompleted2:boolean = false;
   isCompleted3:boolean = true;
   isEditable = true;
   companies = [];
@@ -60,16 +60,17 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
       userName: [null, Validators.required],
       firstName: ['', Validators.required],
       lastName: [null, Validators.required],
-      personalEmail:  ['', [Validators.required, Validators.email]],
-      personalPhone: ['', Validators.required],
+      email:  ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      phone: ['', Validators.required]
     });
     this.regForm2 = this._formBuilder.group({
-      companyId: [null, Validators.required],
-      industryId: [null, Validators.required],
-      reason: [null, Validators.required]
+      companyList: [null, Validators.required],
+      intrestAreaList: [null, Validators.required],
+      platformjoinReason: [null, Validators.required]
     });
     this.regForm3 = this._formBuilder.group({
-      mobileNumber: ['', Validators.required],
+      otpNumber: [1111, Validators.required]
     });
 
     // this.secondFormGroup = this._formBuilder.group({
@@ -82,7 +83,6 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
     // };
     // this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
   }
- 
   
   ngAfterViewInit() {
     this.stepper._getIndicatorType = () => 'none';
@@ -110,26 +110,42 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
     this.alertMsg.message = ''
   }
   submit(){
-    localStorage.setItem('personalPhone', this.regForm1.value.personalPhone);
-    let formObj = {...this.regForm1.value, ...this.regForm3.value};
-    formObj.companyEmail = this.regForm1.value.personalEmail;
-    formObj.companyPhone = this.regForm1.value.personalPhone;
-    if(this.regForm3.valid){
-      let formData = new FormData();
-      formData.append('data', JSON.stringify(formObj));
-      // this.dataService.registerDealer(formData).subscribe(res =>{
-      //   console.log(res);
-      //   if (res.responseCode == 0) {
-      //     this.router.navigateByUrl("/verify");
-      //   }
-      //   else if (res.responseCode == -1) {
-      //     this.alertMsg.type = 'danger';
-      //     this.alertMsg.message = res.errorMsg
-      //   } else {
-      //     this.alertMsg.type = 'danger';
-      //     this.alertMsg.message = 'Server error'
-      //   }
-      // });
+    let formObj = {...this.regForm1.value,...this.regForm2.value};
+    if (this.regForm2.valid && this.regForm1.valid) {
+      this.dataService.register(formObj).subscribe(res => {
+        if (res.responseCode == 0) {
+          this.alertMsg.type = 'success';
+          // this.alertMsg.message = res.successMsg;
+          this.stepper.next();
+          localStorage.setItem('affiliateId', res.response.affiliateId);
+        }
+        else if (res.responseCode == -1) {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = res.errorMsg;
+        } else {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = 'Server error'
+        }
+      });
+    }
+  }
+  verifyOtp(){
+    if (this.regForm3.valid) {
+      this.regForm3.value.affiliateId = localStorage.getItem('affiliateId');
+      this.dataService.validateOtp(this.regForm3.value).subscribe(res => {
+        if (res.responseCode == 0) {
+          this.alertMsg.type = 'success';
+          this.alertMsg.message = res.successMsg;
+          localStorage.setItem('token', res.response.token);
+        }
+        else if (res.responseCode == -1) {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = res.errorMsg;
+        } else {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = 'Server error'
+        }
+      });
     }
   }
 }

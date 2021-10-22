@@ -37,7 +37,27 @@ export class InitialDataService {
         catchError(this.handleError)
       )
   }
-
+  register(data:any) {
+    return this.http.post<any>(this.apiUrl + '/affiliate/register', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  validateOtp(data:any) {
+    return this.http.post<any>(this.apiUrl + '/affiliate/validateOtp', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  login(data:any) {
+    return this.http.post<any>(this.apiUrl + '/affiliate/login', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {
