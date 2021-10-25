@@ -30,6 +30,42 @@ export class AffiliateLoginComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required],
     });
+
+    this.authService.authState.subscribe((user) => {
+      console.log(user);
+      let req;
+      if(user.provider == 'FACEBOOK'){
+        req = {
+          loginType: 'facebook',
+          socialLoginId: user.id
+        }
+      }else if(user.provider == 'GOOGLE'){
+        req = {
+          loginType: 'google',
+          socialLoginId: user.id
+        }
+      }
+      console.log(req);
+      this.dataService.login(req).subscribe( res =>{
+        if (res.responseCode == 0) {
+          localStorage.setItem('affiliateId', res.response.affiliateId);
+          if(res.response.phoneVerfied == 0){
+            this.router.navigateByUrl('/', { state: { affiliateId: res.response.affiliateId } });
+          }else{
+
+          }
+          this.alertMsg.type = 'success';
+          this.alertMsg.message = res.successMsg;
+        }
+        else if (res.responseCode == -1) {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = res.errorMsg;
+        } else {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = 'Server error'
+        }
+      })
+    });
   }
   submit() {
     if (this.login.valid) {

@@ -143,7 +143,9 @@ agm-map{
     padding: 0 20px !important;
     cursor: default !important;
     background-color: transparent !important;
+    pointer-events: none !important;
 }
+
 ::ng-deep .mat-horizontal-stepper-header:visited {
     background-color: transparent !important;
 }

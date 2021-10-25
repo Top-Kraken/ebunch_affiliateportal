@@ -81,12 +81,12 @@ import {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              'clientId'
+              '873717148143-d8d9st2177snv3f1k04n7b0gh48p45ru.apps.googleusercontent.com'
             )
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('clientId')
+            provider: new FacebookLoginProvider('400832421733820')
           }
         ]
       } as SocialAuthServiceConfig,

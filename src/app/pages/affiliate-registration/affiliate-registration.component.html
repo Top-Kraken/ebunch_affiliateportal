@@ -10,7 +10,7 @@
                     <div class="d-block d-md-none text-center">
                         <!-- <span id="mobile-dealers-text" class="d-block d-md-none">- Affiliates</span> -->
                         <img src="assets/images/main-logo-mobile.png" alt="main-logo" id="mobile-logo">
-                        <img src="assets/images/login.png" alt="login" id="mobile-login-img">
+                        <a routerLink="/login"><img src="assets/images/login.png" alt="login" id="mobile-login-img"></a>
                     </div>
                     <div class="my-auto d-none d-md-block">
                         <button class="btn btn-link text-uppercase main-color btn-reg" routerLink="/">Registering as
@@ -80,7 +80,7 @@
                             </div>
                             <div class="d-grid mt-4">
                                 <button mat-button matStepperNext class="btn btn-dark mb-5 mb-md-0"
-                                    [disabled]="!regForm1.valid">Next</button>
+                                    [disabled]="(!regForm1.valid) || (usernameValid != 1)">Next</button>
                             </div>
                         </form>
                     </mat-step>

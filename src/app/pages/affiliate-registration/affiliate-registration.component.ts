@@ -72,7 +72,13 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
     this.regForm3 = this._formBuilder.group({
       otpNumber: [1111, Validators.required]
     });
-
+    if (history.state.affiliateId) {
+      this.isLinear = false;
+      setTimeout(() => {
+        this.stepper.selectedIndex = 2;
+      }, 1);
+    }
+    
     // this.secondFormGroup = this._formBuilder.group({
     //   secondCtrl: ['', Validators.required]
     // });
@@ -86,6 +92,7 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
   
   ngAfterViewInit() {
     this.stepper._getIndicatorType = () => 'none';
+    
   }
   onUsernameEnter(eve:any){
     console.log(eve.target.value);
