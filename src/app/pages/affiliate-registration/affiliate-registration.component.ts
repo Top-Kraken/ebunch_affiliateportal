@@ -65,9 +65,9 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
       phone: ['', Validators.required]
     });
     this.regForm2 = this._formBuilder.group({
-      companyList: [null, Validators.required],
-      intrestAreaList: [null, Validators.required],
-      platformjoinReason: [null, Validators.required]
+      companyList: [''],
+      intrestAreaList: [''],
+      platformjoinReason: ['']
     });
     this.regForm3 = this._formBuilder.group({
       otpNumber: [1111, Validators.required]
@@ -144,6 +144,7 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
           this.alertMsg.type = 'success';
           this.alertMsg.message = res.successMsg;
           localStorage.setItem('token', res.response.token);
+          this.router.navigateByUrl('/login');
         }
         else if (res.responseCode == -1) {
           this.alertMsg.type = 'danger';

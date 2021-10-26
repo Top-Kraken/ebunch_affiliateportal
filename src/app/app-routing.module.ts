@@ -4,6 +4,8 @@ import { DefaultComponent } from './layouts/default/default.component';
 import { AffiliateLoginComponent } from './pages/affiliate-login/affiliate-login.component';
 
 import { AffiliateRegistrationComponent } from './pages/affiliate-registration/affiliate-registration.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
 
 
 const routes: Routes = [
@@ -16,13 +18,17 @@ const routes: Routes = [
     component: AffiliateLoginComponent,
   },
   {
+    path: 'verify',
+    component: VerifyOtpComponent,
+  },
+  {
     path: '',
     component: DefaultComponent,
     children: [
-      // {
-      //   path: 'dashboard',
-      //   component: DashboardComponent
-      // },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
       // {
       //   path: 'settings',
       //   component: SettingsComponent,

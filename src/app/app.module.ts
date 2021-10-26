@@ -31,12 +31,16 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider
 } from 'angularx-social-login';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AffiliateRegistrationComponent,
     AffiliateLoginComponent,
+    DashboardComponent,
+    VerifyOtpComponent,
   ],
   imports: [
     BrowserModule,

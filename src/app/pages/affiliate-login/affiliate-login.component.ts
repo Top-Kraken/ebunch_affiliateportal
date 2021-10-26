@@ -50,9 +50,9 @@ export class AffiliateLoginComponent implements OnInit {
         if (res.responseCode == 0) {
           localStorage.setItem('affiliateId', res.response.affiliateId);
           if(res.response.phoneVerfied == 0){
-            this.router.navigateByUrl('/', { state: { affiliateId: res.response.affiliateId } });
+            this.router.navigateByUrl('/verify', { state: { affiliateId: res.response.affiliateId } });
           }else{
-
+            this.router.navigateByUrl('/dashboard', { state: { affiliateId: res.response.affiliateId } });
           }
           this.alertMsg.type = 'success';
           this.alertMsg.message = res.successMsg;
@@ -93,6 +93,11 @@ export class AffiliateLoginComponent implements OnInit {
 
           //   this.router.navigateByUrl('/dashboard');
           // }
+          if(res.response.phoneVerified == 0){
+            this.router.navigateByUrl('/verify', { state: { affiliateId: res.response.affiliateId } });
+          }else{
+            this.router.navigateByUrl('/dashboard', { state: { affiliateId: res.response.affiliateId } });
+          }
 
         } else {
           this.alertMsg.type = 'danger';
