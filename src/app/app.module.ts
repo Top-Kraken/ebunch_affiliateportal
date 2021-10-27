@@ -33,6 +33,7 @@ import {
 } from 'angularx-social-login';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
       apiKey: 'AIzaSyAhWahf8oOXf9UyFu8W_iCE8HChcbgOVbQ',
       libraries: ['places']
     }),
-    SocialLoginModule
+    SocialLoginModule,
+    NgxUsefulSwiperModule
 
   ],
   providers: [
