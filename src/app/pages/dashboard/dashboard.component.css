@@ -48,3 +48,22 @@ table
 .swiper-wrapper2 .card{
     padding:30px 18px 12px 18px;
 }
+.strip1{
+    border-left:5px solid #a43da1;
+}
+.strip2{
+    border-left:5px solid #e2b20c;
+}
+.strip3{
+    border-left:5px solid #0095b3;
+}
+.aleft{
+    margin-left:12px;
+    text-align: left;
+}
+.swiper-slide {
+    background: lightblue;
+  }
+  .swiper-wrapper {
+    box-sizing: border-box;
+  }
