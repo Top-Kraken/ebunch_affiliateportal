@@ -61,7 +61,7 @@
             
         </div>
         <div class="col-md-12 p-0">
-            <swiper [config]="config" #usefulSwiper1>
+            <swiper [config]="config" #usefulSwiper1 [initialize]="true">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide swiper-slide1" [ngStyle]="{'background-image':'url(assets/images/banner1.png)'}">
                         <div style="position: absolute;bottom:0;width: 100%;" class="d-flex px-3 justify-content-between">
@@ -166,8 +166,8 @@
                     </div>
                 </div>
                 <div class="swiper-pagination swiper-pagination1"></div>
-                <div class="swiper-button-next" (click)="usefulSwiper2.swiper.slideNext()"></div>
-                <div class="swiper-button-prev" (click)="usefulSwiper2.swiper.slidePrev()"></div>
+                <div class="swiper-button-next swiper-button-next2" (click)="usefulSwiper2.swiper.slideNext()"></div>
+                <div class="swiper-button-prev swiper-button-prev2" (click)="usefulSwiper2.swiper.slidePrev()"></div>
             </swiper>
         </div>
         <!-- <div class="col-md-12 p-0 mt-4">

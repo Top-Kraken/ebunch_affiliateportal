@@ -81,3 +81,14 @@ table
 .swiper-button-next1{
     right:40%;
 }
+.swiper-button-prev2, .swiper-button-next2{
+    /* height: 75%;
+    width: 220px;
+    background: black;
+    opacity: 0.4;
+    top: 50px; */
+}
+.swiper-button-prev2:after, .swiper-button-next2:after{
+    font-size: 30px;
+    color: white;
+}
