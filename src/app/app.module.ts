@@ -46,6 +46,7 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    NgxUsefulSwiperModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
@@ -69,8 +70,7 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
       apiKey: 'AIzaSyAhWahf8oOXf9UyFu8W_iCE8HChcbgOVbQ',
       libraries: ['places']
     }),
-    SocialLoginModule,
-    NgxUsefulSwiperModule
+    SocialLoginModule
 
   ],
   providers: [

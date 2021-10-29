@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { SwiperComponent } from 'ngx-useful-swiper';
 import { SwiperOptions } from 'swiper';
 
 export interface PeriodicElement {
@@ -30,21 +31,23 @@ export class DashboardComponent implements OnInit {
   displayedColumns: string[] = ['duration', 'title', 'created_by', 'image','action'];
   dataSource = ELEMENT_DATA;
   config: SwiperOptions = {
-    pagination: { el: '.swiper-pagination', clickable: true },
-    navigation:true,
-   
+    pagination: { el: '.swiper-pagination1', clickable: true },
+    
+    observer: true,
+    observeParents: true,
+    parallax:true,
     spaceBetween: 30
   };
   config1: SwiperOptions = {
-    pagination: { el: '.swiper-pagination1', clickable: true },
+    pagination: { el: '.swiper-pagination2', clickable: true },
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev'
     },
-    autoplay: {
-      delay: 6000,
-      disableOnInteraction: true
-    },
+    // autoplay: {
+    //   delay: 6000,
+    //   disableOnInteraction: true
+    // },
     breakpoints: {
       1024: {
         slidesPerView: 4,
@@ -63,6 +66,7 @@ export class DashboardComponent implements OnInit {
     },
     
   };
+  @ViewChild('usefulSwiper1',{static: false}) usefulSwiper1: any;
   constructor() { }
 
   ngOnInit(): void {
@@ -73,4 +77,5 @@ export class DashboardComponent implements OnInit {
   sortTable(type:any){
 
   }
+  
 }

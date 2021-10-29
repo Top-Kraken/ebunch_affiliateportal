@@ -36,9 +36,10 @@ table
     font-weight: bold;
     color:#3a3a3a;
 }
+
 .swiper-slide1{
     height:180px;
-    background-size: cover;
+    background-size: cover !important;
     background-repeat: no-repeat;
 }
 /* .slide-img{
@@ -67,3 +68,16 @@ table
   .swiper-wrapper {
     box-sizing: border-box;
   }
+.swiper-button-prev1, .swiper-button-next1{
+    top:90%;
+    color: white;
+}
+.swiper-button-prev1:after, .swiper-button-next1:after{
+    font-size: 10px;
+}
+.swiper-button-prev1{
+    left:40%;
+}
+.swiper-button-next1{
+    right:40%;
+}
