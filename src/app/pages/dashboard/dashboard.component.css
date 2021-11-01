@@ -7,6 +7,12 @@
 .bg-white{
     background-color: white;
 }
+.banner{
+    height: 240px;
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+}
 .d-count{
     font-weight: 600;
     font-size: 22px;

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'ngx-useful-swiper';
+import { InitialDataService } from 'src/app/services/initial-data.service';
 import { SwiperOptions } from 'swiper';
 
 export interface PeriodicElement {
@@ -66,10 +67,25 @@ export class DashboardComponent implements OnInit {
     },
     
   };
-  @ViewChild('usefulSwiper1',{static: false}) usefulSwiper1: any;
-  constructor() { }
+  apiData:any;
+  //@ViewChild('usefulSwiper1',{static: false}) usefulSwiper1: any;
+  constructor(
+    private dataService: InitialDataService,
+  ) { }
 
   ngOnInit(): void {
+    let req = {
+      bannerPage: 0,
+      bannerSize: 10,
+      campaignPage: 0,
+      campaignSize: 10,
+      bannerSortBy: "owner",
+      campaignSortBy: "owner"
+    }
+    this.dataService.getDashboardData(req).subscribe( res =>{
+      console.log(res);
+      this.apiData = res.response;
+    })
   }
   close(){
     this.alertMsg.message = '';

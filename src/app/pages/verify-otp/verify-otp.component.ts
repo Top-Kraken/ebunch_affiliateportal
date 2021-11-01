@@ -31,7 +31,7 @@ export class VerifyOtpComponent implements OnInit {
   }
   onSubmit() {
     if (this.otpForm.valid) {
-      this.otpForm.value.affiliateId = localStorage.getItem('affiliateId');
+      this.otpForm.value.affiliateId = Number(localStorage.getItem('affiliateId'));
       this.dataService.validateOtp(this.otpForm.value).subscribe(res => {
         if (res.responseCode == 0) {
           localStorage.setItem('affiliateId', res.response.affiliateId);
