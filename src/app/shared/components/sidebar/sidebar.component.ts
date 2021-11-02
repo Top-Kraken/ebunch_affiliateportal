@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +14,7 @@ export class SidebarComponent implements OnInit {
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   @Input() isPartialClose: boolean;
   //isExpanded = false;
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog,private router: Router) {
     this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
     this.userPhotoUrl = this.userData.userPhotoUrl;
     console.log(this.userData);
@@ -34,5 +35,9 @@ export class SidebarComponent implements OnInit {
   }
   openContactUs() {
     
+  }
+  logout(){
+    localStorage.clear();
+    this.router.navigateByUrl('/login');
   }
 }

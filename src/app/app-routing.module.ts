@@ -6,6 +6,7 @@ import { AffiliateLoginComponent } from './pages/affiliate-login/affiliate-login
 import { AffiliateRegistrationComponent } from './pages/affiliate-registration/affiliate-registration.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
+import { AuthGuard } from './services/auth.gaurds';
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
       },
       // {
       //   path: 'settings',
@@ -47,6 +49,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }
