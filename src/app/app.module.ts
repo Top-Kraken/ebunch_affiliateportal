@@ -34,6 +34,7 @@ import {
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import { TrainingComponent } from './pages/training/training.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
     AffiliateLoginComponent,
     DashboardComponent,
     VerifyOtpComponent,
+    TrainingComponent,
   ],
   imports: [
     BrowserModule,

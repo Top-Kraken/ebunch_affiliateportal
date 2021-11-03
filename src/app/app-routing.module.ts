@@ -5,6 +5,7 @@ import { AffiliateLoginComponent } from './pages/affiliate-login/affiliate-login
 
 import { AffiliateRegistrationComponent } from './pages/affiliate-registration/affiliate-registration.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { TrainingComponent } from './pages/training/training.component';
 import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
 import { AuthGuard } from './services/auth.gaurds';
 
@@ -29,7 +30,11 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        canActivate: [AuthGuard]
+        //canActivate: [AuthGuard]
+      },
+      {
+        path: 'training',
+        component: TrainingComponent,
       },
       // {
       //   path: 'settings',

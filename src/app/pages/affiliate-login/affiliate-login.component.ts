@@ -49,9 +49,10 @@ export class AffiliateLoginComponent implements OnInit {
       this.dataService.login(req).subscribe( res =>{
         if (res.responseCode == 0) {
           localStorage.setItem('affiliateId', res.response.affiliateId);
-          if(res.response.phoneVerfied == 0){
+          if (res.response.phoneVerfied == 0) {
             this.router.navigateByUrl('/verify', { state: { affiliateId: res.response.affiliateId } });
-          }else{
+          } else {
+            localStorage.setItem('token',res.response.token);
             this.router.navigateByUrl('/dashboard', { state: { affiliateId: res.response.affiliateId } });
           }
           this.alertMsg.type = 'success';
