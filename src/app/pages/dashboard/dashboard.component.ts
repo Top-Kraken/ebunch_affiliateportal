@@ -21,6 +21,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  p: number;
   alertMsg: any = {
     type: '',
     message: ''
@@ -79,8 +80,8 @@ export class DashboardComponent implements OnInit {
       bannerSize: 10,
       campaignPage: 0,
       campaignSize: 10,
-      bannerSortBy: "",
-      campaignSortBy: ""
+      bannerSortBy: "owner",
+      campaignSortBy: "owner"
     }
     this.dataService.getDashboardData(req).subscribe( res =>{
       console.log(res);
@@ -93,5 +94,7 @@ export class DashboardComponent implements OnInit {
   sortTable(type:any){
 
   }
-  
+  getPage(page:any) {
+    
+  }
 }

@@ -97,6 +97,7 @@ export class AffiliateLoginComponent implements OnInit {
           if(res.response.phoneVerified == 0){
             this.router.navigateByUrl('/verify', { state: { affiliateId: res.response.affiliateId } });
           }else{
+            localStorage.setItem('token', res.response.token);
             this.router.navigateByUrl('/dashboard', { state: { affiliateId: res.response.affiliateId } });
           }
 

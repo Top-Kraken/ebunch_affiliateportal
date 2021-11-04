@@ -35,6 +35,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { TrainingComponent } from './pages/training/training.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { TrainingComponent } from './pages/training/training.component';
       apiKey: 'AIzaSyAhWahf8oOXf9UyFu8W_iCE8HChcbgOVbQ',
       libraries: ['places']
     }),
+    NgxPaginationModule,
     SocialLoginModule
 
   ],

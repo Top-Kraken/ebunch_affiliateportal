@@ -59,6 +59,7 @@
         </div>
         <div class="col-md-12 p-0">
             
+            
         </div>
         <div class="col-md-12 p-0">
             <!-- <swiper [config]="config" #usefulSwiper1 [initialize]="true">
@@ -90,10 +91,13 @@
                 <div class="swiper-button-next swiper-button-next1" (click)="usefulSwiper1.swiper.slideNext()"></div>
                 <div class="swiper-button-prev swiper-button-prev1" (click)="usefulSwiper1.swiper.slidePrev()"></div>
             </swiper> -->
+            
             <div class="card w-100 banner"
-            [style.background-image]="'url(' + apiData?.bannerList[0].bannerImageLink + ')'">
+            *ngFor="let item of apiData.bannerList | paginate: { itemsPerPage: 1, currentPage: p };let i = index"
+            [style.background-image]="'url(' + apiData?.bannerList[i].bannerImageLink + ')'">
                
             </div>
+            <pagination-controls (pageChange)="getPage(p = $event)"></pagination-controls>
         </div>
         <div class="col-md-12 p-0 mt-4 d-flex justify-content-between">
             <h2>Campaigns</h2>
