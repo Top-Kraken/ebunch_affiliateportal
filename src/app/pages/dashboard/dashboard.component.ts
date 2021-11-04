@@ -79,8 +79,8 @@ export class DashboardComponent implements OnInit {
       bannerSize: 10,
       campaignPage: 0,
       campaignSize: 10,
-      bannerSortBy: "owner",
-      campaignSortBy: "owner"
+      bannerSortBy: "",
+      campaignSortBy: ""
     }
     this.dataService.getDashboardData(req).subscribe( res =>{
       console.log(res);
