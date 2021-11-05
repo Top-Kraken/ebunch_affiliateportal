@@ -36,6 +36,7 @@ import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { TrainingComponent } from './pages/training/training.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ShareModalComponent } from './pages/dashboard/share-modal/share-modal.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DashboardComponent,
     VerifyOtpComponent,
     TrainingComponent,
+    ShareModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -48,18 +48,16 @@
             <div ngbDropdown>
                 <button class="btn btn-sort" id="gfg" ngbDropdownToggle>Sort By:</button>
                 <div ngbDropdownMenu="gfg">
-                    <button ngbDropdownItem class="btn btn-default"
-                        (click)="sortTable('alpha')">Alphabatical</button>
+                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('alpha')">Alphabatical</button>
                     <button ngbDropdownItem class="btn btn-default" (click)="sortTable('dateAdded')">New
-                        </button>
-                    <button ngbDropdownItem class="btn btn-default"
-                        (click)="sortTable('unverified')">Popular</button>
+                    </button>
+                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('unverified')">Popular</button>
                 </div>
             </div>
         </div>
         <div class="col-md-12 p-0">
-            
-            
+
+
         </div>
         <div class="col-md-12 p-0">
             <!-- <swiper [config]="config" #usefulSwiper1 [initialize]="true">
@@ -91,92 +89,70 @@
                 <div class="swiper-button-next swiper-button-next1" (click)="usefulSwiper1.swiper.slideNext()"></div>
                 <div class="swiper-button-prev swiper-button-prev1" (click)="usefulSwiper1.swiper.slidePrev()"></div>
             </swiper> -->
-            
-            <div class="card w-100 banner"
-            *ngFor="let item of apiData.bannerList | paginate: { itemsPerPage: 1, currentPage: p };let i = index"
-            [style.background-image]="'url(' + apiData?.bannerList[i].bannerImageLink + ')'">
+
+            <div class="card w-100 banner box-shadow mb-5 mb-md-0"
+                *ngFor="let banner of apiData.bannerList | paginate: { id: 'pagination1', itemsPerPage: 1, currentPage: p };let i = index"
+                [style.background-image]="'url(' + apiData?.bannerList[i].bannerImageLink + ')'">
+                <div class="banner-content mb-2">
+                    <h1 class="text-light mb-0 ms-1">{{banner.bannerName}} <span style="font-size: 12px;color:gray">{{banner.bannerStartDate | date :'shortDate'}}</span></h1>
+                    <div class="d-flex me-3">
+                        <div class="me-2" style="cursor:pointer">
+                            <img src="assets/images/fb.png" alt="fb">
+                        </div>
                
+                        <div class="ml-2" style="cursor:pointer">
+                            <mat-icon style="color:white;zoom:1.3">share</mat-icon>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination-box"> 
+                    <pagination-controls id="pagination1" (pageChange)="getPage(p = $event)" previousLabel=""
+                        nextLabel="">
+                    </pagination-controls>
+                </div>
             </div>
-            <pagination-controls (pageChange)="getPage(p = $event)"></pagination-controls>
         </div>
         <div class="col-md-12 p-0 mt-4 d-flex justify-content-between">
             <h2>Campaigns</h2>
             <div ngbDropdown>
                 <button class="btn btn-sort" id="gfg" ngbDropdownToggle>Sort By:</button>
                 <div ngbDropdownMenu="gfg">
-                    <button ngbDropdownItem class="btn btn-default"
-                        (click)="sortTable('alpha')">Alphabatical - owner</button>
-                        <button ngbDropdownItem class="btn btn-default"
-                        (click)="sortTable('alpha')">Alphabatical - title</button>
+                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('alpha')">Alphabatical -
+                        owner</button>
+                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('alpha')">Alphabatical -
+                        title</button>
                     <button ngbDropdownItem class="btn btn-default" (click)="sortTable('dateAdded')">New
-                        </button>
-                    <button ngbDropdownItem class="btn btn-default"
-                        (click)="sortTable('unverified')">Popular</button>
+                    </button>
+                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('unverified')">Popular</button>
                 </div>
             </div>
         </div>
         <div class="col-md-12 p-0">
             <swiper [config]="config1" #usefulSwiper2>
                 <div class="swiper-wrapper swiper-wrapper2">
-                    <div class="swiper-slide" [ngStyle]="{'background-image':'url(https://picsum.photos/200)'}">
+                    <div class="swiper-slide" 
+                        *ngFor="let campaign of apiData.campaignList | paginate: { id: 'pagination2', itemsPerPage: 4, currentPage: p1 };let i = index"
+                        [ngStyle]="{'background-image':'url(https://picsum.photos/200)'}"
+                        >
                         <div class="card">
-                            <img src="assets/images/kia.png" alt="kia" class="slide-img">
-                            <h3 class="text-left mb-0">Hension: Get Lower Ra...</h3>
-                            <div style="position: absolute;right:4px;top:4px">
-                                <mat-icon>share</mat-icon>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <img src="assets/images/90Days.png" alt="90days" class="slide-img">
-                            <h3 class="text-left mb-0">Hension: Get Lower Ra...</h3>
-                            <div style="position: absolute;right:4px;top:4px">
-                                <mat-icon>share</mat-icon>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <img src="assets/images/Chevrolet.png" alt="Chevrolet" class="slide-img">
-                            <h3 class="text-left mb-0">Hension: Get Lower Ra...</h3>
-                            <div style="position: absolute;right:3px;top:0">
-                                <mat-icon>share</mat-icon>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <img src="assets/images/SIERRA-2500.png" alt="SIERRA-2500" class="slide-img">
-                            <h3 class="text-left mb-0">Hension: Get Lower Ra...</h3>
-                            <div style="position: absolute;right:3px;top:0">
-                                <mat-icon>share</mat-icon>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <img src="assets/images/Chevrolet.png" alt="Chevrolet" class="slide-img">
-                            <h3 class="text-left mb-0">Hension: Get Lower Ra...</h3>
-                            <div style="position: absolute;right:3px;top:0">
-                                <mat-icon>share</mat-icon>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <img src="assets/images/90Days.png" alt="90days" class="slide-img">
-                            <h3 class="text-left mb-0">Hension: Get Lower Ra...</h3>
-                            <div style="position: absolute;right:4px;top:4px">
-                                <mat-icon>share</mat-icon>
+                            <img [src]="campaign.campaignImageLink" alt="kia" class="slide-img">
+                            <h3 class="text-left mb-0">{{campaign.campaignDescription}}</h3>
+                            <div style="position: absolute;right:4px;top:4px;cursor: pointer;" (click)="openCampaignShareModal(campaign)">
+                                <mat-icon style="color:#a73ea1">share</mat-icon>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-pagination swiper-pagination1"></div>
+                <!-- <div class="swiper-pagination swiper-pagination1"></div> -->
                 <div class="swiper-button-next swiper-button-next2" (click)="usefulSwiper2.swiper.slideNext()"></div>
                 <div class="swiper-button-prev swiper-button-prev2" (click)="usefulSwiper2.swiper.slidePrev()"></div>
             </swiper>
+        </div>
+        <div class="col-md-12">
+            <div class="card pagination-card text-center">
+                <pagination-controls id="pagination2" (pageChange)="getPage(p1 = $event)" previousLabel="" nextLabel="">
+                </pagination-controls>
+            </div>
         </div>
         <!-- <div class="col-md-12 p-0 mt-4">
             <h2>Promotions</h2>

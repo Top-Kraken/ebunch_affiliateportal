@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { SwiperComponent } from 'ngx-useful-swiper';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 import { SwiperOptions } from 'swiper';
+import { ShareModalComponent } from './share-modal/share-modal.component';
 
 export interface PeriodicElement {
   duration: string;
@@ -22,6 +24,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class DashboardComponent implements OnInit {
   p: number;
+  p1:number;
   alertMsg: any = {
     type: '',
     message: ''
@@ -72,6 +75,7 @@ export class DashboardComponent implements OnInit {
   //@ViewChild('usefulSwiper1',{static: false}) usefulSwiper1: any;
   constructor(
     private dataService: InitialDataService,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -96,5 +100,21 @@ export class DashboardComponent implements OnInit {
   }
   getPage(page:any) {
     
+  }
+  openCampaignShareModal(campaign:any){
+    let size = ['675px', '475px'];
+    if (window.innerWidth > 786) {
+      size = ['595px', '400px'];
+    } else {
+      size = ['350px', '600px'];
+    }
+    const dialogRef1 = this.dialog.open(ShareModalComponent, {
+      maxWidth: size[0],
+      maxHeight: size[1],
+      height: '100%',
+      width: '100%',
+      data: campaign,
+      disableClose: false
+    });
   }
 }
