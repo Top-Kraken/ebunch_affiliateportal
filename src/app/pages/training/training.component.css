@@ -70,12 +70,16 @@ textarea::placeholder {
     background-color: #a63da1;
     color:white;
     text-transform: uppercase;
-    padding-right: 4rem;
-    padding-left: 4rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
 }
 
 @media only screen and (min-device-width: 768px){
     .infoBox{
         width: 380px;
+    }
+    .app-btn{
+        padding-right: 4rem;
+        padding-left: 4rem;
     }
 }
