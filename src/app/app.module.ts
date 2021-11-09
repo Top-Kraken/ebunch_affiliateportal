@@ -37,6 +37,7 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { TrainingComponent } from './pages/training/training.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ShareModalComponent } from './pages/dashboard/share-modal/share-modal.component';
+import { ReferComponent } from './pages/refer/refer.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ShareModalComponent } from './pages/dashboard/share-modal/share-modal.c
     VerifyOtpComponent,
     TrainingComponent,
     ShareModalComponent,
+    ReferComponent,
   ],
   imports: [
     BrowserModule,

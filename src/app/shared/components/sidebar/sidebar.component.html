@@ -32,6 +32,10 @@
             <mat-icon>school</mat-icon>
             <span *ngIf="!isPartialClose">Training</span>
         </a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/refer">
+            <mat-icon>school</mat-icon>
+            <span *ngIf="!isPartialClose">Refer</span>
+        </a>
         <a mat-list-item (click)="logout()">
             <mat-icon >logout</mat-icon>
             <span *ngIf="!isPartialClose" class="me-3">Log Out</span>

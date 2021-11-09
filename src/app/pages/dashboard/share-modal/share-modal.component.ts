@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { InitialDataService } from 'src/app/services/initial-data.service';
+import { Meta } from '@angular/platform-browser';  
 
 @Component({
   selector: 'app-share-modal',
@@ -12,6 +13,7 @@ export class ShareModalComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private dataService: InitialDataService,
+    private meta: Meta,
     @Optional() public dialogRef: MatDialogRef<ShareModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
  
@@ -19,9 +21,22 @@ export class ShareModalComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data);
     this.campaign = this.data;
+    
+   
   }
   closeModal(){
     this.dialogRef.close()
   }
 
+  share() {
+    this.meta.updateTag({ name: 'og:title', content: 'This is an article about Angular Meta service' });
+    this.meta.updateTag({ name: 'description', content: 'This is an article about Angular Meta service' });
+    this.meta.updateTag({name:'og:image',content:"assets/images/fb.png" })
+    FB.ui({
+      method: 'share',
+      href: 'https://hensonnation.com/refer-and-earn/',
+      hashtag:"Read"
+  
+    }, function(response){});
+  }
 }
