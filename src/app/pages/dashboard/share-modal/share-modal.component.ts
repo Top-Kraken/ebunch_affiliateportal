@@ -21,22 +21,24 @@ export class ShareModalComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data);
     this.campaign = this.data;
-    
-   
+    this.meta.addTag({ name: 'description', content: 'Article Description' });
+    this.meta.updateTag({ name: 'og:title', content: 'This is an article about Angular Meta service' });
+    this.meta.updateTag({ name: 'description', content: 'This is an article about Angular Meta service' });
+    this.meta.updateTag({ name: 'og:image', content: "assets/images/fb.png" })
   }
-  closeModal(){
+
+  closeModal() {
     this.dialogRef.close()
   }
 
   share() {
     this.meta.updateTag({ name: 'og:title', content: 'This is an article about Angular Meta service' });
     this.meta.updateTag({ name: 'description', content: 'This is an article about Angular Meta service' });
-    this.meta.updateTag({name:'og:image',content:"assets/images/fb.png" })
+    this.meta.updateTag({ name: 'og:image', content: "assets/images/fb.png" })
     FB.ui({
       method: 'share',
-      href: 'https://hensonnation.com/refer-and-earn/',
-      hashtag:"Read"
-  
-    }, function(response){});
+      href: this.campaign.shortUrlLink,
+      hashtag: "Read"
+    }, function (response) { });
   }
 }

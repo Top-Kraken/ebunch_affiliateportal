@@ -117,4 +117,10 @@ export class DashboardComponent implements OnInit {
       disableClose: false
     });
   }
+  shareToFb(ele:any){
+    FB.ui({
+      method: 'share',
+      href: ele.bannerUrlLink
+    }, function (response) { });
+  }
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Meta } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -82,6 +82,7 @@ import { ReferComponent } from './pages/refer/refer.component';
 
   ],
   providers: [
+    Meta,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
