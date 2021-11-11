@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { InitialDataService } from 'src/app/services/initial-data.service';
 
 @Component({
   selector: 'app-training',
@@ -14,7 +15,8 @@ export class TrainingComponent implements OnInit {
   };
   @ViewChild('videoPlayer') videoplayer: ElementRef;
   constructor(
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private dataService: InitialDataService,
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +36,14 @@ export class TrainingComponent implements OnInit {
     this.videoplayer.nativeElement.play();
   }
   contactUs(){
-
+    this.dataService.contactUs(this.contact.value).subscribe(res =>{
+      if(res.responseCode == 0){
+        this.alertMsg.type = 'success';
+        this.alertMsg.message = res.successMsg
+      }else {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = 'Server error'
+        }
+    })
   }
 }
