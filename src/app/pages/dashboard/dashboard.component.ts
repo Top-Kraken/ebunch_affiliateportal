@@ -96,7 +96,18 @@ export class DashboardComponent implements OnInit {
     this.alertMsg.message = '';
   }
   sortTable(type:any){
-
+    let req = {
+      bannerPage: 0,
+      bannerSize: 10,
+      campaignPage: 0,
+      campaignSize: 10,
+      bannerSortBy: type,
+      campaignSortBy: type
+    }
+    this.dataService.getDashboardData(req).subscribe( res =>{
+      console.log(res);
+      this.apiData = res.response;
+    })
   }
   getPage(page:any) {
     
@@ -123,4 +134,5 @@ export class DashboardComponent implements OnInit {
       href: ele.bannerUrlLink
     }, function (response) { });
   }
+  
 }

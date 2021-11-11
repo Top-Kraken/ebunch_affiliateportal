@@ -51,7 +51,7 @@
                     <button ngbDropdownItem class="btn btn-default" (click)="sortTable('alpha')">Alphabatical</button>
                     <button ngbDropdownItem class="btn btn-default" (click)="sortTable('dateAdded')">New
                     </button>
-                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('unverified')">Popular</button>
+                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('popular')">Popular</button>
                 </div>
             </div>
         </div>
@@ -117,13 +117,13 @@
             <div ngbDropdown>
                 <button class="btn btn-sort" id="gfg" ngbDropdownToggle>Sort By:</button>
                 <div ngbDropdownMenu="gfg">
-                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('alpha')">Alphabatical -
+                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('owner')">Alphabatical -
                         owner</button>
-                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('alpha')">Alphabatical -
+                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('title')">Alphabatical -
                         title</button>
                     <button ngbDropdownItem class="btn btn-default" (click)="sortTable('dateAdded')">New
                     </button>
-                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('unverified')">Popular</button>
+                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('popular')">Popular</button>
                 </div>
             </div>
         </div>
@@ -132,10 +132,22 @@
                 <div class="swiper-wrapper swiper-wrapper2">
                     <div class="swiper-slide" 
                         *ngFor="let campaign of apiData?.campaignList | paginate: { id: 'pagination2', itemsPerPage: 4, currentPage: p1 };let i = index"
-                        [ngStyle]="{'background-image':'url(https://picsum.photos/200)'}"
+                        
                         >
                         <div class="card">
-                            <img [src]="campaign.campaignImageLink" alt="kia" class="slide-img">
+                            
+                            <div class="tile" 
+                                *ngIf="campaign.campaignType == 'image'"
+                                [ngStyle]="{'background-image': 'url(' + campaign.campaignImageLink + ')'}">
+                            </div>
+                            <div class="tile" 
+                                *ngIf="campaign.campaignType == 'video'"
+                                >
+                                <video width="100%" [poster]="campaign.campaignImageLink" controls>
+                                    <source [src]="campaign.campaignVideoLink" type="video/mp4">
+                                </video>
+                            </div>
+                            <!-- <img [src]="campaign.campaignImageLink" alt="kia" class="slide-img"> -->
                             <h3 class="text-left mb-0">{{campaign.campaignDescription}}</h3>
                             <div style="position: absolute;right:4px;top:4px;cursor: pointer;" (click)="openCampaignShareModal(campaign)">
                                 <mat-icon style="color:#a73ea1">share</mat-icon>
@@ -154,44 +166,5 @@
                 </pagination-controls>
             </div>
         </div>
-        <!-- <div class="col-md-12 p-0 mt-4">
-            <h2>Promotions</h2>
-        </div>
-        <div class="col-md-12 p-0">
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-                <ng-container matColumnDef="duration">
-                    <th mat-header-cell *matHeaderCellDef> Duration </th>
-                    <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="title">
-                    <th mat-header-cell *matHeaderCellDef> Title </th>
-                    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="created_by">
-                    <th mat-header-cell *matHeaderCellDef> Created By </th>
-                    <td mat-cell *matCellDef="let element"> {{element.created_by}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="image">
-                    <th mat-header-cell *matHeaderCellDef>  </th>
-                    <td mat-cell *matCellDef="let element"> 
-                        <img [src]="element.image" alt="">    
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="action">
-                    <th mat-header-cell *matHeaderCellDef>  </th>
-                    <td mat-cell *matCellDef="let element"> 
-                        <button class="btn btn-dark">Share</button>    
-                    </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-
-
-        </div> -->
     </div>
 </div>

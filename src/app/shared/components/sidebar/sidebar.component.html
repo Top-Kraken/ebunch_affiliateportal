@@ -4,7 +4,7 @@
         <div class="ps-3 text-light">
             <img [src]="userPhotoUrl ? userPhotoUrl :'assets/images/profile-pic.png'" alt="profile-pic" class="img-fluid" id="profile-pic">
             <h3 *ngIf="!isPartialClose" class="my-0" id="userName">{{userData.firstName}}</h3>
-            <p *ngIf="!isPartialClose" ><i>{{userData.emailId}}</i></p>
+            <p *ngIf="!isPartialClose" ><i>{{userData.email}}</i></p>
             <p *ngIf="!isPartialClose" id="date">{{date1 | date: 'medium'}}</p>
         </div>
         <div class="px-3 text-light" *ngIf="!isPartialClose">
@@ -36,7 +36,7 @@
             <mat-icon>school</mat-icon>
             <span *ngIf="!isPartialClose">Refer</span>
         </a>
-        <a mat-list-item (click)="logout()">
+        <a mat-list-item (click)="logout()" class="d-block d-md-none">
             <mat-icon >logout</mat-icon>
             <span *ngIf="!isPartialClose" class="me-3">Log Out</span>
         </a>
@@ -48,11 +48,11 @@
         </a>
     </div>
     <div>
-        <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <a mat-list-item (click)="logout()" class="d-none d-md-block">
 
             <span *ngIf="!isPartialClose" class="me-3">Log Out</span>
             <mat-icon >logout</mat-icon>
-        </a> -->
+        </a>
     </div>
 
 

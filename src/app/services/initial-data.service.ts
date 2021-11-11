@@ -66,7 +66,7 @@ export class InitialDataService {
       )
   }
   referFriends(data:any){
-    return this.http.post<any>(this.apiUrl + '/affiliate/getDashboardData', data)
+    return this.http.post<any>(this.apiUrl + '/affiliate/referFriends', data)
       .pipe(
         retry(1),
         catchError(this.handleError)
