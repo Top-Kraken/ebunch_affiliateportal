@@ -157,6 +157,10 @@ table
     background:transparent;
     border: 0;
 }
+.dropdown-item.active, .dropdown-item:active{
+    background-color: #a63da1;
+    color:white;
+}
 @media only screen and (min-device-width: 768px){
     .pagination-box{
         width: 60%;

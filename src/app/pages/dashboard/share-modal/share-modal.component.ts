@@ -34,7 +34,9 @@ export class ShareModalComponent implements OnInit {
     FB.ui({
       method: 'share',
       href: this.campaign.shortUrlLink,
-    }, function (response) { });
+    }, function (response) { 
+      console.log(response);
+    });
   }
   copyLink(){
     this.clipboard.copy(this.campaign.shortUrlLink);

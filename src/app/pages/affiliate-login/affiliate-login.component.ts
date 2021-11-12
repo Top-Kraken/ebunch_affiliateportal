@@ -34,28 +34,28 @@ export class AffiliateLoginComponent implements OnInit {
     this.authService.authState.subscribe((user) => {
       console.log(user);
       let req;
-      if(user.provider == 'FACEBOOK'){
+      if (user.provider == 'FACEBOOK') {
         req = {
           loginType: 'facebook',
           socialLoginId: user.id
         }
-      }else if(user.provider == 'GOOGLE'){
+      } else if (user.provider == 'GOOGLE') {
         req = {
           loginType: 'google',
           socialLoginId: user.id
         }
       }
       console.log(req);
-      this.dataService.login(req).subscribe( res =>{
+      this.dataService.login(req).subscribe(res => {
         if (res.responseCode == 0) {
           localStorage.setItem('affiliateId', res.response.affiliateId);
           if (res.response.phoneVerfied == 0) {
             this.router.navigateByUrl('/verify', { state: { affiliateId: res.response.affiliateId } });
           } else {
-            localStorage.setItem('token',res.response.token);
-            localStorage.setItem('referalCode',res.response.referalCode);
-            localStorage.setItem('referalReward',res.response.referalReward);
-            
+            localStorage.setItem('token', res.response.token);
+            localStorage.setItem('referalCode', res.response.referalCode);
+            localStorage.setItem('referalReward', res.response.referalReward);
+
             this.router.navigateByUrl('/dashboard', { state: { affiliateId: res.response.affiliateId } });
           }
           this.alertMsg.type = 'success';
@@ -81,28 +81,13 @@ export class AffiliateLoginComponent implements OnInit {
           this.alertMsg.message = res.errorMsg
           //this.router.navigateByUrl('/review', { state: { msg: res.successMsg } });
         } else if (res.responseCode == 0) {
-          // if (res.response.status == 'phoneVerificationPending') {
-          //   this.router.navigateByUrl('/verify');
-          // } else if (res.response.status == 'new' || res.response.status == 'rejected') {
-          //   this.router.navigateByUrl('/review', { state: { msg: res.successMsg } });
-          // } else if ((res.response.facebookLink == null) && (res.response.instaLink == null) && (res.response.linkedinLink == null)) {
-          //   localStorage.setItem('token', res.response.token);
-          //   this.router.navigateByUrl('/complete-profile', { state: { data: res.response } });
-          // } else if (res.response.firstTimeLogin == 1) {
-          //   localStorage.setItem('token', res.response.token);
-          //   this.router.navigateByUrl('/dealer-create-password');
-          // } else {
-          //   localStorage.setItem('token', res.response.token);
-          //   localStorage.setItem('userData', JSON.stringify(res.response));
-
-          //   this.router.navigateByUrl('/dashboard');
-          // }
-          if(res.response.phoneVerified == 0){
+          
+          if (res.response.phoneVerified == 0) {
             this.router.navigateByUrl('/verify', { state: { affiliateId: res.response.affiliateId } });
-          }else{
+          } else {
             localStorage.setItem('token', res.response.token);
-            localStorage.setItem('referalCode',res.response.referalCode);
-            localStorage.setItem('referalReward',res.response.referalReward);
+            localStorage.setItem('referalCode', res.response.referalCode);
+            localStorage.setItem('referalReward', res.response.referalReward);
             localStorage.setItem('userData', JSON.stringify(res.response));
             this.router.navigateByUrl('/dashboard', { state: { affiliateId: res.response.affiliateId } });
           }
@@ -115,10 +100,10 @@ export class AffiliateLoginComponent implements OnInit {
     }
     //this.router.navigateByUrl('/dealer-forgot-password')
   }
-  logInWithFb(){
+  logInWithFb() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
-  logInWithGoogle(){
+  logInWithGoogle() {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
   close() {

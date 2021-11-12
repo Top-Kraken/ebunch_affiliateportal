@@ -73,7 +73,10 @@ textarea::placeholder {
     padding-right: 2rem;
     padding-left: 2rem;
 }
-
+.dropdown-item.active, .dropdown-item:active{
+    background-color: #a63da1;
+    color:white;
+}
 @media only screen and (min-device-width: 768px){
     .infoBox{
         width: 380px;

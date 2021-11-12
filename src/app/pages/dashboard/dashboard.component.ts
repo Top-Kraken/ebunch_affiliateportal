@@ -10,11 +10,11 @@ export interface PeriodicElement {
   title: string;
   created_by: string;
   image: string;
-  action:any
+  action: any
 }
 const ELEMENT_DATA: PeriodicElement[] = [
-  {duration: "23 sep 2021 - 27 sep 2021", title: 'Henson Nation', created_by: 'Brand Auto Dealer', image: 'https://picsum.photos/100', action: ''},
- 
+  { duration: "23 sep 2021 - 27 sep 2021", title: 'Henson Nation', created_by: 'Brand Auto Dealer', image: 'https://picsum.photos/100', action: '' },
+
 ];
 
 @Component({
@@ -24,23 +24,23 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class DashboardComponent implements OnInit {
   p: number;
-  p1:number;
+  p1: number;
   alertMsg: any = {
     type: '',
     message: ''
   };
   slides = [
-    {image: 'assets/images/banner1.png'},
-    {image: 'assets/images/banner1.png'}
+    { image: 'assets/images/banner1.png' },
+    { image: 'assets/images/banner1.png' }
   ];
-  displayedColumns: string[] = ['duration', 'title', 'created_by', 'image','action'];
+  displayedColumns: string[] = ['duration', 'title', 'created_by', 'image', 'action'];
   dataSource = ELEMENT_DATA;
   config: SwiperOptions = {
     pagination: { el: '.swiper-pagination1', clickable: true },
-    
+
     observer: true,
     observeParents: true,
-    parallax:true,
+    parallax: true,
     spaceBetween: 30
   };
   config1: SwiperOptions = {
@@ -69,9 +69,9 @@ export class DashboardComponent implements OnInit {
         slidesPerView: 1
       }
     },
-    
+
   };
-  apiData:any;
+  apiData: any;
   //@ViewChild('usefulSwiper1',{static: false}) usefulSwiper1: any;
   constructor(
     private dataService: InitialDataService,
@@ -87,15 +87,15 @@ export class DashboardComponent implements OnInit {
       bannerSortBy: "owner",
       campaignSortBy: "owner"
     }
-    this.dataService.getDashboardData(req).subscribe( res =>{
+    this.dataService.getDashboardData(req).subscribe(res => {
       console.log(res);
       this.apiData = res.response;
     })
   }
-  close(){
+  close() {
     this.alertMsg.message = '';
   }
-  sortTable(type:any){
+  sortTable(type: any) {
     let req = {
       bannerPage: 0,
       bannerSize: 10,
@@ -104,15 +104,15 @@ export class DashboardComponent implements OnInit {
       bannerSortBy: type,
       campaignSortBy: type
     }
-    this.dataService.getDashboardData(req).subscribe( res =>{
+    this.dataService.getDashboardData(req).subscribe(res => {
       console.log(res);
       this.apiData = res.response;
     })
   }
-  getPage(page:any) {
-    
+  getPage(page: any) {
+
   }
-  openCampaignShareModal(campaign:any){
+  openCampaignShareModal(campaign: any) {
     let size = ['675px', '475px'];
     if (window.innerWidth > 786) {
       size = ['595px', '400px'];
@@ -128,11 +128,11 @@ export class DashboardComponent implements OnInit {
       disableClose: false
     });
   }
-  shareToFb(ele:any){
+  shareToFb(ele: any) {
     FB.ui({
       method: 'share',
       href: ele.bannerUrlLink
     }, function (response) { });
   }
-  
+
 }
