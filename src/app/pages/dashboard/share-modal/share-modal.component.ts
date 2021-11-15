@@ -33,7 +33,7 @@ export class ShareModalComponent implements OnInit {
   share() {
     FB.ui({
       method: 'share',
-      href: this.campaign.shortUrlLink,
+      href: this.campaign.shortUrlLink
     }, function (response) { 
       console.log(response);
     });

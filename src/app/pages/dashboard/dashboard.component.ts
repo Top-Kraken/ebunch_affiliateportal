@@ -4,7 +4,7 @@ import { SwiperComponent } from 'ngx-useful-swiper';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 import { SwiperOptions } from 'swiper';
 import { ShareModalComponent } from './share-modal/share-modal.component';
-
+import { FacebookService, InitParams } from 'ngx-facebook';
 export interface PeriodicElement {
   duration: string;
   title: string;
@@ -130,9 +130,12 @@ export class DashboardComponent implements OnInit {
   }
   shareToFb(ele: any) {
     FB.ui({
+      app_id:"279646084042341",
       method: 'share',
       href: ele.bannerUrlLink
-    }, function (response) { });
+    }, function (response) {
+      console.log(response);
+    });
   }
 
 }

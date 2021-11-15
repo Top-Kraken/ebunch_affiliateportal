@@ -31,6 +31,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider
 } from 'angularx-social-login';
+import { FacebookModule } from 'ngx-facebook';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
@@ -77,6 +78,7 @@ import { ReferComponent } from './pages/refer/refer.component';
       apiKey: 'AIzaSyAhWahf8oOXf9UyFu8W_iCE8HChcbgOVbQ',
       libraries: ['places']
     }),
+    FacebookModule.forRoot(),
     NgxPaginationModule,
     SocialLoginModule
 
@@ -101,7 +103,7 @@ import { ReferComponent } from './pages/refer/refer.component';
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('400832421733820')
+            provider: new FacebookLoginProvider('279646084042341')
           }
         ]
       } as SocialAuthServiceConfig,
