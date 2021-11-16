@@ -103,7 +103,7 @@ import { ReferComponent } from './pages/refer/refer.component';
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('279646084042341')
+            provider: new FacebookLoginProvider('400832421733820')
           }
         ]
       } as SocialAuthServiceConfig,

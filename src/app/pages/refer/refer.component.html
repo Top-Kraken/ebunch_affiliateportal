@@ -1,7 +1,7 @@
 <div class="page-container">
     <div class="row">
         <div class="col-md-12 p-0">
-            <h1 class="page-heading font-bold">Earn X rewards from your friends referrals</h1>
+            <h1 class="page-heading font-bold">Earn {{referalReward}} rewards from your friends referrals</h1>
         </div>
         <div class="col-md-12 p-0">
            
@@ -27,26 +27,27 @@
         <h4 class="text-center mt-3">Or Invite by Email</h4>
         <div class="col-md-12 p-0">
             <div class="card py-3 px-3 px-md-5">
-                <div class="form-group mb-4">
-                    <input type="text" matInput class="form-control" id="" [(ngModel)]="emails"
-                        placeholder="Enter Email Addresses (comma separated)">
-                </div>
-                <div class="form-group">
-                    <textarea name="reason" id="reason" rows="6" class="w-100 p-2" placeholder="Message"></textarea>
-                </div>
-                <div *ngIf="alertMsg.message"
-                    class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
-                    [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'" role="alert">
-                    <span>{{alertMsg.message}}</span>
-                    <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert"
-                        aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="text-center mt-3">
-                    <button class="btn app-btn" (click)="sendInvitation()" [disabled]="!emails">Send Invitation</button>
-                </div>
-                
+                <form [formGroup]="referForm">
+                    <div class="form-group mb-4">
+                        <input type="text" matInput class="form-control" id="" formControlName="email"
+                            placeholder="Enter Email Addresses (comma separated)">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="reason" id="reason" formControlName="description" rows="6" class="w-100 p-2" placeholder="Message"></textarea>
+                    </div>
+                    <div *ngIf="alertMsg.message"
+                        class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
+                        [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'" role="alert">
+                        <span>{{alertMsg.message}}</span>
+                        <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="btn app-btn" (click)="sendInvitation()" [disabled]="!referForm.valid">Send Invitation</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -31,15 +31,17 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        //canActivate: [AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: 'training',
         component: TrainingComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'refer',
         component: ReferComponent,
+        canActivate: [AuthGuard]
       },
       // {
       //   path: 'settings',

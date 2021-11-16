@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { InitialDataService } from 'src/app/services/initial-data.service';
 import { Meta } from '@angular/platform-browser';  
 import { Clipboard } from '@angular/cdk/clipboard';
+import { ShareDialogResponse } from 'ngx-facebook/models/ui-response';
 
 @Component({
   selector: 'app-share-modal',
@@ -32,10 +33,18 @@ export class ShareModalComponent implements OnInit {
 
   share() {
     FB.ui({
+      app_id:"400832421733820",
       method: 'share',
       href: this.campaign.shortUrlLink
-    }, function (response) { 
-      console.log(response);
+    }, (response:ShareDialogResponse) => {
+      console.log(response)
+      if(response == 'undefined'){
+        alert("not shared")
+      }else if(response){
+        console.log(response)
+      }
+     // console.log(response.post_id);
+      
     });
   }
   copyLink(){

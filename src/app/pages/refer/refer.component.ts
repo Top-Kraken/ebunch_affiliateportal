@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-refer',
@@ -8,37 +9,54 @@ import { Clipboard } from '@angular/cdk/clipboard';
   styleUrls: ['./refer.component.css']
 })
 export class ReferComponent implements OnInit {
+  referForm: FormGroup
   alertMsg: any = {
     type: '',
     message: ''
   };
   showCopyState = false;
-  emails:any;
-  referalReward:any;
-  referalCode:any;
-  constructor(private dataService: InitialDataService,private clipboard: Clipboard,) { }
+  emails: any;
+  referalReward: any;
+  referalCode: any;
+  emailPattern = "[a-zA-Z0-9_.+-,;]+@(?:(?:[a-zA-Z0-9-]+\.,;)?[a-zA-Z]+\.,;)?(gmail)\.com";
+
+  constructor(
+    private dataService: InitialDataService,
+    private clipboard: Clipboard,
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit(): void {
+
     this.referalCode = localStorage.getItem('referalCode');
+    this.referalReward = localStorage.getItem('referalReward');
+    this.referForm = this.fb.group({
+      email: ['',
+        [Validators.required, Validators.pattern(/^([\w+-.%]+@[\w-.]+\.[A-Za-z]{2,4},?)+$/)]
+      ],
+      description: ['']
+    });
   }
-  close(){
+ 
+  close() {
     this.alertMsg.message = '';
   }
-  sendInvitation(){
+  sendInvitation() {
     let req = {
-      emailId: this.emails.split(',')
+      emailId: this.referForm.value.email.split(','),
+      description: this.referForm.value.description
     }
-    this.dataService.referFriends(req).subscribe(res =>{
-      if(res.responseCode == 0){
-        
+    this.dataService.referFriends(req).subscribe(res => {
+      if (res.responseCode == 0) {
+
         this.alertMsg.type = 'success';
         this.alertMsg.message = res.successMsg;
       }
     });
   }
-  copyCode(){
-    this.clipboard.copy(this.referalCode.shortUrlLink);
+  copyCode() {
+    this.clipboard.copy(this.referalCode);
     this.showCopyState = true;
-    setTimeout(()=>{this.showCopyState = false;},1000)
+    setTimeout(() => { this.showCopyState = false; }, 1000)
   }
 }

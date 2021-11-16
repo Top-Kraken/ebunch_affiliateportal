@@ -130,7 +130,7 @@ export class DashboardComponent implements OnInit {
   }
   shareToFb(ele: any) {
     FB.ui({
-      app_id:"279646084042341",
+      app_id:"400832421733820",
       method: 'share',
       href: ele.bannerUrlLink
     }, function (response) {
