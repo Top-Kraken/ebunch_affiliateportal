@@ -88,7 +88,19 @@ export class DashboardComponent implements OnInit {
       campaignSortBy: "owner"
     }
     this.dataService.getDashboardData(req).subscribe(res => {
-      console.log(res);
+      this.apiData = res.response;
+    })
+  }
+  getdashboardData(){
+    let req = {
+      bannerPage: 0,
+      bannerSize: 10,
+      campaignPage: 0,
+      campaignSize: 10,
+      bannerSortBy: "owner",
+      campaignSortBy: "owner"
+    }
+    this.dataService.getDashboardData(req).subscribe(res => {
       this.apiData = res.response;
     })
   }
@@ -127,14 +139,35 @@ export class DashboardComponent implements OnInit {
       data: campaign,
       disableClose: false
     });
+    dialogRef1.afterClosed().subscribe(result => {
+      this.getdashboardData();
+    });
   }
+
   shareToFb(ele: any) {
     FB.ui({
-      app_id:"400832421733820",
+      app_id: "400832421733820",
       method: 'share',
       href: ele.bannerUrlLink
-    }, function (response) {
-      console.log(response);
+    },  (response) =>{
+      let req = {
+        bannerId: ele.bannerId,
+        campaignId: null
+      }
+      this.dataService.sharedOnFb(req).subscribe(res =>{
+        if(res.responseCode == 0){
+          this.alertMsg.type = 'success';
+          this.alertMsg.message = res.successMsg;
+          this.getdashboardData();
+        }
+        else if (res.responseCode == -1) {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = res.errorMsg;
+        } else {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = 'Server error'
+        }
+      })
     });
   }
 

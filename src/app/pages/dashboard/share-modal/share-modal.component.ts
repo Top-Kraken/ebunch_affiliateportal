@@ -13,6 +13,10 @@ import { ShareDialogResponse } from 'ngx-facebook/models/ui-response';
 export class ShareModalComponent implements OnInit {
   campaign:any;
   showCopyState:boolean = false;
+  alertMsg: any = {
+    type: '',
+    message: ''
+  };
   constructor(
     private clipboard: Clipboard,
     public dialog: MatDialog,
@@ -37,19 +41,31 @@ export class ShareModalComponent implements OnInit {
       method: 'share',
       href: this.campaign.shortUrlLink
     }, (response:ShareDialogResponse) => {
-      console.log(response)
-      if(response == 'undefined'){
-        alert("not shared")
-      }else if(response){
-        console.log(response)
+      let req = {
+        bannerId: null,
+        campaignId: this.campaign.campaignId
       }
-     // console.log(response.post_id);
-      
+      this.dataService.sharedOnFb(req).subscribe(res =>{
+        if(res.responseCode == 0){
+          this.alertMsg.type = 'success';
+          this.alertMsg.message = res.successMsg;
+        }
+        else if (res.responseCode == -1) {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = res.errorMsg;
+        } else {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = 'Server error'
+        }
+      })
     });
   }
   copyLink(){
     this.clipboard.copy(this.campaign.shortUrlLink);
     this.showCopyState = true;
     setTimeout(()=>{this.showCopyState = false;},1000)
+  }
+  close(){
+    this.alertMsg.message = '';
   }
 }

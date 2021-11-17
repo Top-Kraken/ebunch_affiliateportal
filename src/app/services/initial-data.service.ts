@@ -65,15 +65,22 @@ export class InitialDataService {
         catchError(this.handleError)
       )
   }
-  referFriends(data:any){
+  referFriends(data: any) {
     return this.http.post<any>(this.apiUrl + '/affiliate/referFriends', data)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  contactUs(data:any){
+  contactUs(data: any) {
     return this.http.post<any>(this.apiUrl + '/affiliate/contactUs', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  sharedOnFb(data: any) {
+    return this.http.post<any>(this.apiUrl + '/affiliate/sharedOnFb', data)
       .pipe(
         retry(1),
         catchError(this.handleError)

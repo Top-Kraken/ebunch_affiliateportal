@@ -25,12 +25,19 @@
     top:0
 }
 ::ng-deep .mat-menu-panel{
+    margin-top:20px;
     max-width: 320px !important;
     padding-right: 6px;
     padding-left:6px;
 }
 .notf-image{
-    width: 50px;
+    width: 30px;
+    margin-right: 4px;
+    border-radius: 25px;
+}
+.timeText{
+    text-align: right;
+    font-size: 12px;
 }
 ::ng-deep .mat-menu-content{
     padding-top: 0 !important;

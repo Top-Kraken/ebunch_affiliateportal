@@ -32,7 +32,6 @@ export class AffiliateLoginComponent implements OnInit {
     });
 
     this.authService.authState.subscribe((user) => {
-      console.log(user);
       let req;
       if (user.provider == 'FACEBOOK') {
         req = {
@@ -45,8 +44,9 @@ export class AffiliateLoginComponent implements OnInit {
           socialLoginId: user.id
         }
       }
-      console.log(req);
       this.dataService.login(req).subscribe(res => {
+        alert("aaya");
+        console.log(res.response.phoneVerfied);
         if (res.responseCode == 0) {
           localStorage.setItem('affiliateId', res.response.affiliateId);
           if (res.response.phoneVerfied == 0) {
@@ -81,7 +81,7 @@ export class AffiliateLoginComponent implements OnInit {
           this.alertMsg.message = res.errorMsg
           //this.router.navigateByUrl('/review', { state: { msg: res.successMsg } });
         } else if (res.responseCode == 0) {
-          
+
           if (res.response.phoneVerified == 0) {
             this.router.navigateByUrl('/verify', { state: { affiliateId: res.response.affiliateId } });
           } else {
