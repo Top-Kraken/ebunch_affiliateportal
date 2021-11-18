@@ -30,8 +30,16 @@ export class HeaderComponent implements OnInit {
   }
   selected: any = '0';
   ngOnInit(): void {
+    this.getNotifications();
+    setInterval(()=>{this.getNotifications()},30000);
   }
   
+  getNotifications(){
+    this.dataService.getAffiliateNotification().subscribe(res => {
+      this.notificationList = res.response.notificationList;
+      this.isNewNotification = res.response.unReadNotification
+    });
+  }
   toggleSideBar(){
     this.toggleSideBarForMe.emit();
     this.isExpanded = !this.isExpanded
@@ -45,8 +53,8 @@ export class HeaderComponent implements OnInit {
   menuOpened(){
   }
   menuClosed(){
-    // this.dataService.markDealerNotificationRead().subscribe(res => {
-    // });
+    this.dataService.marAffiliateNotificationRead().subscribe(res => {
+    });
   }
 }
 

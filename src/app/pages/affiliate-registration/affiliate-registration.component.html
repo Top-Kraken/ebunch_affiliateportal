@@ -100,6 +100,15 @@
                                 <textarea name="reason" formControlName="platformjoinReason" id="reason" rows="10"
                                     class="w-100 p-2" placeholder="Why Did You Join This Platform?"></textarea>
                             </div>
+                            <div *ngIf="alertMsg.message"
+                                class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
+                                [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'" role="alert">
+                                <span>{{alertMsg.message}}</span>
+                                <button type="button" class="btn btn-default close" (click)="close()"
+                                    data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                             <div class="d-flex mt-5">
                                 <button mat-button matStepperPrevious class="btn btn-default btn-back px-5">Back</button>
                                 <button mat-button class="btn btn-dark flex-grow-1 me-2" [disabled]="!regForm2.valid"
