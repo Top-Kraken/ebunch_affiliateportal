@@ -6,6 +6,7 @@ import { AffiliateLoginComponent } from './pages/affiliate-login/affiliate-login
 import { AffiliateRegistrationComponent } from './pages/affiliate-registration/affiliate-registration.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ReferComponent } from './pages/refer/refer.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 import { TrainingComponent } from './pages/training/training.component';
 import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
 import { AuthGuard } from './services/auth.gaurds';
@@ -43,10 +44,10 @@ const routes: Routes = [
         component: ReferComponent,
         canActivate: [AuthGuard]
       },
-      // {
-      //   path: 'settings',
-      //   component: SettingsComponent,
-      // },
+      {
+        path: 'settings',
+        component: SettingsComponent,
+      },
       // {
       //   path: 'affiliates',
       //   component: AffiliatesComponent,

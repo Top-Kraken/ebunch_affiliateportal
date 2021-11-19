@@ -1,1 +1,103 @@
-<p>settings works!</p>
+<div class="page-container">
+    <div class="row">
+        <div class="col-md-12 p-0 mb-2">
+            <h1 class="page-heading">Settings</h1>
+        </div>
+        <div class="col-md-4 p-0 pe-md-3 pe-lg-3">
+            <div class="d-flex flex-md-column">
+                <div class="bg-white flex-grow-1 px-4 py-2 pt-md-4 pb-md-5 text-center mb-3 me-2 shadow">
+                    <h4 class="text-uppercase text-muted">User Photo</h4>
+                    <div class="position-relative m-auto settingImage mb-3"
+                        [ngStyle]="{'background-image': 'url(' + selectedUserImgPath + ')'}">
+                        <!-- <img [src]="selectedUserImgPath ? selectedUserImgPath :'assets/images/profile-pic.png'" alt=""
+                            class="img-fluid"> -->
+                        <input #userLogo type="file" id="companyLogoUpload" (change)="onFileChanged($event,'user')"
+                            style="display:none" accept="image/*" />
+                        <div class="camera-icon">
+                            <img src="assets/images/camera.png" alt="camera" (click)="userLogo.click()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 bg-white px-2 px-md-5 py-3 shadow">
+            <form [formGroup]="profileForm" class="m-0 p-0" style="width:97%">
+                <div class="form-group mt-3">
+                    <div class="col">
+                        <label>First Name</label>
+                        <input type="text" matInput class="form-control" formControlName="firstName"
+                            placeholder="ADDRESS LINE 1">
+                    </div>
+                    <div class="col">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" formControlName="lastName" placeholder="Last name">
+                    </div>
+                </div>
+                <div class="form-group d-flex flex-column flex-md-row">
+                    <div class="col me-md-2">
+                        <label for="">Personal Email</label>
+                        <input type="text" class="form-control mb-3 mb-md-0 mb-lg-2 me-md-2"
+                            placeholder="User Email" formControlName="personalEmail">
+                    </div>
+                    <div class="col ms-md-2">
+                        <label for="">Personal Phone</label>
+                        <input matInput type="tel" class="form-control" id="personalPhone" placeholder="User Phone"
+                            formControlName="personalPhone">
+                    </div>
+                </div>
+                <div class="form-group mt-md-3">
+                    <label for="">Interest</label>
+                    <ng-select [items]="interests" bindLabel="industryName" placeholder="Interest Area"
+                        [multiple]="true" formControlName="intrestAreaList" bindValue="industryId">
+                    </ng-select>
+                </div>
+                <div class="form-group mt-md-3">
+                    <label for="">Company</label>
+                    <ng-select [items]="companies" bindLabel="companyName" placeholder="Company Name"
+                        [multiple]="true" formControlName="companyList" bindValue="companyId">
+                    </ng-select>
+                </div>
+              
+                <div class="form-group d-flex my-5">
+                    <!-- <div class="col-4">
+                                <input matInput type="text" class="form-control" [value]="userData.password"
+                                    id="password" placeholder="password" readonly
+                                    style="border:none;background: transparent;display: none;">
+                            </div> -->
+                    <div class="flex-grow-1 text-center">
+                        <button class="btn btn-password w-75 mx-auto" (click)="openChangePasswordDialog()">Change
+                            Password</button>
+                    </div>
+                </div>
+                <!-- <div class="d-flex mt-4">
+                            <button mat-button class="btn btn-default btn-back">Back</button>
+                            <button mat-button (click)="submit()" class="btn btn-dark flex-grow-1" [disabled]="!profileForm.valid">SUBMIT</button>
+                        </div> -->
+                <div *ngIf="alertMsg.message"
+                    class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
+                    [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'" role="alert">
+                    <span>{{alertMsg.message}}</span>
+                    <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </form>
+
+            <div *ngIf="alertMsg.message"
+                class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
+                [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'" role="alert">
+                <span>{{alertMsg.message}}</span>
+                <button type="button" class="btn btn-default close" (click)="close()" data-dismiss="alert"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+        <div class="col-md-12 text-center mt-3">
+            <button class="btn btn-secondary me-3">Reset</button>
+            <button class="btn btn-dark btn-save" (click)="updateChanges()">Save Changes</button>
+        </div>
+    </div>
+</div>

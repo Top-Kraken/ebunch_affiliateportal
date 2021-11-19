@@ -40,6 +40,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ShareModalComponent } from './pages/dashboard/share-modal/share-modal.component';
 import { ReferComponent } from './pages/refer/refer.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { ChangePasswordModalComponent } from './pages/settings/change-password-modal/change-password-modal.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
     ShareModalComponent,
     ReferComponent,
     SettingsComponent,
+    ChangePasswordModalComponent,
   ],
   imports: [
     BrowserModule,
