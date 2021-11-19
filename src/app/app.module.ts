@@ -39,6 +39,7 @@ import { TrainingComponent } from './pages/training/training.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ShareModalComponent } from './pages/dashboard/share-modal/share-modal.component';
 import { ReferComponent } from './pages/refer/refer.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ReferComponent } from './pages/refer/refer.component';
     TrainingComponent,
     ShareModalComponent,
     ReferComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
