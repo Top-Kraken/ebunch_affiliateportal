@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 //import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DefaultModule } from './layouts/default/default.module';
 import { NgbAlertModule, NgbDropdown, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
@@ -23,7 +25,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AffiliateRegistrationComponent } from './pages/affiliate-registration/affiliate-registration.component';
 import { AffiliateLoginComponent } from './pages/affiliate-login/affiliate-login.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
@@ -41,6 +43,7 @@ import { ShareModalComponent } from './pages/dashboard/share-modal/share-modal.c
 import { ReferComponent } from './pages/refer/refer.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ChangePasswordModalComponent } from './pages/settings/change-password-modal/change-password-modal.component';
+import { WalletComponent } from './pages/wallet/wallet.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,7 @@ import { ChangePasswordModalComponent } from './pages/settings/change-password-m
     ReferComponent,
     SettingsComponent,
     ChangePasswordModalComponent,
+    WalletComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +88,9 @@ import { ChangePasswordModalComponent } from './pages/settings/change-password-m
     }),
     FacebookModule.forRoot(),
     NgxPaginationModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
   ],
   providers: [

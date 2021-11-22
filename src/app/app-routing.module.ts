@@ -9,6 +9,7 @@ import { ReferComponent } from './pages/refer/refer.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { TrainingComponent } from './pages/training/training.component';
 import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
+import { WalletComponent } from './pages/wallet/wallet.component';
 import { AuthGuard } from './services/auth.gaurds';
 
 
@@ -48,10 +49,10 @@ const routes: Routes = [
         path: 'settings',
         component: SettingsComponent,
       },
-      // {
-      //   path: 'affiliates',
-      //   component: AffiliatesComponent,
-      // },
+      {
+        path: 'wallet',
+        component: WalletComponent,
+      },
       // {
       //   path: 'packages',
       //   component: PackagesComponent,
