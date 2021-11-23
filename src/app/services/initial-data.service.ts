@@ -100,6 +100,20 @@ export class InitialDataService {
         catchError(this.handleError)
       )
   }
+  updateAffiliateSetting(data:any){
+    return this.http.post<any>(this.apiUrl + '/affiliate/updateAffiliateSetting', data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  changeAffiliatePassword(data:any){
+    return this.http.post<any>(this.apiUrl + '/affiliate/changeAffiliatePassword', data)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {

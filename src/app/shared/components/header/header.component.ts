@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   constructor(public dialog: MatDialog, private router: Router,private dataService: InitialDataService) {
     this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
-    this.userPhotoUrl = this.userData.userPhotoUrl;
+    this.userPhotoUrl = this.userData.userImage;
     console.log(this.userData);
   }
   selected: any = '0';
@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
     
   }
   goToTraining(){
-    this.router.navigateByUrl('/training')
+    this.router.navigate(['/training',{page:'conatct'}])
   }
   menuOpened(){
   }

@@ -18,15 +18,15 @@ export class SettingsComponent implements OnInit {
     type: '',
     message: ''
   };
-  userData:any;
+  userData: any;
 
-  facebookLink:string;
-  linkedinLink:string;
-  instaLink:string;
+  facebookLink: string;
+  linkedinLink: string;
+  instaLink: string;
   selectedCompanyLogo: File;
   selectedUserImg: File;
-  selectedCompanyLogoPath:any = 'assets/images/profile-pic.png';
-  selectedUserImgPath:any = 'assets/images/profile-pic.png';
+  selectedCompanyLogoPath: any = 'assets/images/profile-pic.png';
+  selectedUserImgPath: any = 'assets/images/profile-pic.png';
   companies: any[] = [];
   interests: any[] = [];
   constructor(
@@ -37,20 +37,21 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
     console.log(this.userData);
-    this.selectedCompanyLogoPath = this.userData.companyLogoUrl;
-    this.selectedUserImgPath = this.userData.userPhotoUrl;
+    this.selectedCompanyLogoPath = this.userData.userImage;
+    this.selectedUserImgPath = this.userData.userImage;
     this.facebookLink = this.userData.facebookLink;
     this.linkedinLink = this.userData.linkedinLink;
     this.instaLink = this.userData.instaLink;
-    
+
     this.profileForm = this._formBuilder.group({
       firstName: [this.userData.firstName, Validators.required],
       lastName: [this.userData.lastName, Validators.required],
-      personalEmail: [this.userData.email, [Validators.required, Validators.email]],
-      personalPhone: [this.userData.phone, Validators.required],
-      intrestAreaList:[],
-      companyList:[]
+      email: [this.userData.email, [Validators.required, Validators.email]],
+      phone: [this.userData.phone, Validators.required],
+      intrestAreaList: [this.userData.intrestAreaList],
+      companyList: [this.userData.companyList]
     });
     this.dataService.getCompanyList().subscribe(data => {
       this.companies = data.response.companyList;
@@ -75,12 +76,12 @@ export class SettingsComponent implements OnInit {
   close() {
     this.alertMsg.message = ''
   }
-  openChangePasswordDialog(){
-    let size = ['375px','375'];
-    if(window.innerWidth > 786){
-      size = ['475px','400px'];
-    }else{
-      size = ['350px','400px'];
+  openChangePasswordDialog() {
+    let size = ['375px', '375'];
+    if (window.innerWidth > 786) {
+      size = ['475px', '400px'];
+    } else {
+      size = ['350px', '400px'];
     }
     const dialogRef = this.dialog.open(ChangePasswordModalComponent, {
       maxWidth: size[0],
@@ -97,8 +98,8 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  updateChanges(){
-    if(this.profileForm.valid){
+  updateChanges() {
+    if (this.profileForm.valid) {
       //update socila info
       let obj = {
         facebookLink: this.facebookLink,
@@ -110,22 +111,28 @@ export class SettingsComponent implements OnInit {
       let formData = new FormData();
       formData.append('data', JSON.stringify(this.profileForm.value));
       formData.append('userPhoto', this.selectedUserImg);
-      formData.append('companyLogo', this.selectedCompanyLogo);
-      // this.dataService.updateDealerSettings(formData).subscribe( res =>{
-      //   console.log(res);
-      //   if (res.responseCode == -1) {
-      //     this.alertMsg.type = 'danger';
-      //     this.alertMsg.message = res.errorMsg
-      //   } else if (res.responseCode == 0) {
-      //     this.alertMsg.type = 'success';
-      //     this.profileForm.patchValue(res.response);
-      //     localStorage.setItem('userData', JSON.stringify(res.response));
-      //     this.alertMsg.message = res.successMsg;
-      //   } else {
-      //     this.alertMsg.type = 'danger';
-      //     this.alertMsg.message = "Server error"
-      //   }
-      // })
+      console.log(this.profileForm.value);
+      this.dataService.updateAffiliateSetting(formData).subscribe( res =>{
+        if (res.responseCode == -1) {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = res.errorMsg
+        } else if (res.responseCode == 0) {
+          this.alertMsg.type = 'success';
+          this.userData.firstName = this.profileForm.value.firstName;
+          this.userData.lastName = this.profileForm.value.lastName;
+          this.userData.email = this.profileForm.value.email;
+          this.userData.phone = this.profileForm.value.phone;
+          this.userData.intrestAreaList = this.profileForm.value.intrestAreaList;
+          this.userData.companyList = this.profileForm.value.firstName;
+
+          //this.profileForm.patchValue(res.response);
+          //localStorage.setItem('userData', JSON.stringify(res.response));
+          this.alertMsg.message = res.successMsg;
+        } else {
+          this.alertMsg.type = 'danger';
+          this.alertMsg.message = "Server error"
+        }
+      })
     }
   }
 

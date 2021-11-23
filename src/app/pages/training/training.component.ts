@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 
 @Component({
@@ -13,19 +14,33 @@ export class TrainingComponent implements OnInit {
     type: '',
     message: ''
   };
+  page:any;
+  userData:any;
+  @ViewChild('form') form: ElementRef;
   @ViewChild('videoPlayer') videoplayer: ElementRef;
   constructor(
     private _formBuilder: FormBuilder,
+    private router: Router,
     private dataService: InitialDataService,
-  ) { }
+    private route: ActivatedRoute
+  ) {
+    this.page =this.route.snapshot.paramMap.get('page');
+   }
 
   ngOnInit(): void {
+    this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
     this.contact = this._formBuilder.group({
       subject: ['', Validators.required],
       message: ['', Validators.required],
     });
-  }
 
+  }
+  ngAfterViewInit(){
+    if(this.page){
+      this.form.nativeElement.scrollIntoView();
+
+    }
+  }
   close(){
 
   }

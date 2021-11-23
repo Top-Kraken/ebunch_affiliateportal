@@ -25,26 +25,34 @@ export class ChangePasswordModalComponent implements OnInit {
     this.passwordForm = this._formBuilder.group({
       oldPassword: ['', Validators.required],
       newPassword: ['', Validators.required],
+      confPassword: ['', Validators.required],
     });
   }
   close() {
     this.alertMsg.message = ''
   }
   submit(){
-    if(this.passwordForm.valid){
-      // this.dataService.updateDealerPassword(this.passwordForm.value).subscribe( res =>{
-      //   if(res.responseCode == 0){
-      //     this.alertMsg.type = 'succsess';
-      //     this.alertMsg.message = res.successMsg
-      //   }else if(res.responseCode == -1){
-      //     this.alertMsg.type = 'danger';
-      //     this.alertMsg.message = res.errorMsg
-      //   }else{
-      //     this.alertMsg.type = 'danger';
-      //     this.alertMsg.message = "Server error"
-      //   }
-      // })
+    
+    if(this.passwordForm.value.confPassword != this.passwordForm.value.newPassword){
+      alert("Password Does not match")
+    }else{
+      if(this.passwordForm.valid){
+        delete this.passwordForm.value.confPassword;
+        this.dataService.changeAffiliatePassword(this.passwordForm.value).subscribe( res =>{
+          if(res.responseCode == 0){
+            this.alertMsg.type = 'succsess';
+            this.alertMsg.message = res.successMsg
+          }else if(res.responseCode == -1){
+            this.alertMsg.type = 'danger';
+            this.alertMsg.message = res.errorMsg
+          }else{
+            this.alertMsg.type = 'danger';
+            this.alertMsg.message = "Server error"
+          }
+        })
+      }
     }
+    
   }
 
 }

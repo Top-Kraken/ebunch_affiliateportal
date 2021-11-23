@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit {
   //isExpanded = false;
   constructor(public dialog: MatDialog,private router: Router) {
     this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
-    this.userPhotoUrl = this.userData.userPhotoUrl;
+    this.userPhotoUrl = this.userData.userImage;
     console.log(this.userData);
   }
 
