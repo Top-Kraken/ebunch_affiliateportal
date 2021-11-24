@@ -48,7 +48,8 @@
             <div ngbDropdown>
                 <button class="btn btn-sort" id="gfg" ngbDropdownToggle>Sort By:</button>
                 <div ngbDropdownMenu="gfg">
-                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('alphabatical')">Alphabatical</button>
+                    <button ngbDropdownItem class="btn btn-default"
+                        (click)="sortTable('alphabatical')">Alphabatical</button>
                     <button ngbDropdownItem class="btn btn-default" (click)="sortTable('new')">New
                     </button>
                     <button ngbDropdownItem class="btn btn-default" (click)="sortTable('popular')">Popular</button>
@@ -94,7 +95,9 @@
                 *ngFor="let banner of apiData?.bannerList | paginate: { id: 'pagination1', itemsPerPage: 1, currentPage: p };let i = index"
                 [style.background-image]="'url(' + apiData?.bannerList[i].bannerImageLink + ')'">
                 <div class="banner-content mb-2">
-                    <h1 class="text-light mb-0 ms-1">{{banner.bannerName}} <span style="font-size: 12px;color:gray">{{banner.bannerStartDate | date :'shortDate'}}</span></h1>
+                    <h1 class="text-light mb-0 ms-1">{{banner.bannerName}} <span
+                            style="font-size: 12px;color:gray">{{banner.bannerStartDate | date :'shortDate'}}</span>
+                    </h1>
                     <div class="d-flex me-3">
                         <div class="me-2" style="cursor:pointer">
                             <img src="assets/images/fb.png" alt="fb" (click)="shareToFb(banner)">
@@ -105,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pagination-box"> 
+                <div class="pagination-box">
                     <pagination-controls id="pagination1" (pageChange)="getPage(p = $event)" previousLabel=""
                         nextLabel="">
                     </pagination-controls>
@@ -130,26 +133,22 @@
         <div class="col-md-12 p-0">
             <swiper [config]="config1" #usefulSwiper2>
                 <div class="swiper-wrapper swiper-wrapper2">
-                    <div class="swiper-slide" 
-                        *ngFor="let campaign of apiData?.campaignList | paginate: { id: 'pagination2', itemsPerPage: 4, currentPage: p1 };let i = index"
-                        
-                        >
+                    <div class="swiper-slide"
+                        *ngFor="let campaign of apiData?.campaignList | paginate: { id: 'pagination2', itemsPerPage: 4, currentPage: p1 };let i = index">
                         <div class="card">
-                            
-                            <div class="tile" 
-                                *ngIf="campaign.campaignType == 'image'"
+
+                            <div class="tile" *ngIf="campaign.campaignType == 'image'"
                                 [ngStyle]="{'background-image': 'url(' + campaign.campaignImageLink + ')'}">
                             </div>
-                            <div class="tile" 
-                                *ngIf="campaign.campaignType == 'video'"
-                                >
+                            <div class="tile" *ngIf="campaign.campaignType == 'video'">
                                 <video width="100%" [poster]="campaign.campaignImageLink" controls>
                                     <source [src]="campaign.campaignVideoLink" type="video/mp4">
                                 </video>
                             </div>
                             <!-- <img [src]="campaign.campaignImageLink" alt="kia" class="slide-img"> -->
                             <h3 class="text-left mb-0">{{campaign.campaignDescription}}</h3>
-                            <div style="position: absolute;right:4px;top:4px;cursor: pointer;" (click)="openCampaignShareModal(campaign)">
+                            <div style="position: absolute;right:4px;top:4px;cursor: pointer;"
+                                (click)="openCampaignShareModal(campaign)">
                                 <mat-icon style="color:#a73ea1">share</mat-icon>
                             </div>
                         </div>

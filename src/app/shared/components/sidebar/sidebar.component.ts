@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { InitialDataService } from 'src/app/services/initial-data.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,13 +15,17 @@ export class SidebarComponent implements OnInit {
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   @Input() isPartialClose: boolean;
   //isExpanded = false;
-  constructor(public dialog: MatDialog,private router: Router) {
+  constructor(public dialog: MatDialog,private router: Router, private dataService: InitialDataService) {
     this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
     this.userPhotoUrl = this.userData.userImage;
     console.log(this.userData);
   }
 
   ngOnInit(): void {
+    this.dataService.isSettingChanged.subscribe( val =>{
+      this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
+      this.userPhotoUrl = this.userData.userImage;
+    })
   }
   toggleSideBar() {
     if (window.innerWidth < 786) {

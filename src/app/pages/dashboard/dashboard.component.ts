@@ -85,7 +85,7 @@ export class DashboardComponent implements OnInit {
       campaignPage: 0,
       campaignSize: 10,
       bannerSortBy: "owner",
-      campaignSortBy: "owner"
+      campaignSortBy: ""
     }
     this.dataService.getDashboardData(req).subscribe(res => {
       this.apiData = res.response;
@@ -98,7 +98,7 @@ export class DashboardComponent implements OnInit {
       campaignPage: 0,
       campaignSize: 10,
       bannerSortBy: "owner",
-      campaignSortBy: "owner"
+      campaignSortBy: ""
     }
     this.dataService.getDashboardData(req).subscribe(res => {
       this.apiData = res.response;

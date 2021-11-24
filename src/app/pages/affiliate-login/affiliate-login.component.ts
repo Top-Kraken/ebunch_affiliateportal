@@ -98,7 +98,6 @@ export class AffiliateLoginComponent implements OnInit {
         }
       })
     }
-    //this.router.navigateByUrl('/dealer-forgot-password')
   }
   logInWithFb() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
