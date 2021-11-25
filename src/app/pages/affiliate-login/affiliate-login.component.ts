@@ -45,7 +45,6 @@ export class AffiliateLoginComponent implements OnInit {
         }
       }
       this.dataService.login(req).subscribe(res => {
-        alert("aaya");
         console.log(res.response.phoneVerfied);
         if (res.responseCode == 0) {
           localStorage.setItem('affiliateId', res.response.affiliateId);
