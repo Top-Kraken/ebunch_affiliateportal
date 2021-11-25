@@ -146,10 +146,11 @@ export class DashboardComponent implements OnInit {
 
   shareToFb(ele: any) {
     FB.ui({
-      app_id: "400832421733820",
+      app_id: "277274391071647",
       method: 'share',
       href: ele.bannerUrlLink
     },  (response) =>{
+      console.log(response);
       let req = {
         bannerId: ele.bannerId,
         campaignId: null
@@ -170,5 +171,4 @@ export class DashboardComponent implements OnInit {
       })
     });
   }
-
 }
