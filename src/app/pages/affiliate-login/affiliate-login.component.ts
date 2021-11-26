@@ -45,18 +45,23 @@ export class AffiliateLoginComponent implements OnInit {
         }
       }
       this.dataService.login(req).subscribe(res => {
-        console.log(res.response.phoneVerfied);
+        console.log(res.response.phoneVerified);
         if (res.responseCode == 0) {
           localStorage.setItem('affiliateId', res.response.affiliateId);
-          if (res.response.phoneVerfied == 0) {
-            this.router.navigateByUrl('/verify', { state: { affiliateId: res.response.affiliateId } });
-          } else {
-            localStorage.setItem('token', res.response.token);
-            localStorage.setItem('referalCode', res.response.referalCode);
-            localStorage.setItem('referalReward', res.response.referalReward);
-
-            this.router.navigateByUrl('/dashboard', { state: { affiliateId: res.response.affiliateId } });
+          if(res.response.firstTimeLogin == 1){
+            this.router.navigateByUrl('/');
+          }else if(res.response.firstTimeLogin == 0){
+            if (res.response.phoneVerified == 0) {
+              this.router.navigateByUrl('/verify', { state: { affiliateId: res.response.affiliateId } });
+            } else {
+              localStorage.setItem('token', res.response.token);
+              localStorage.setItem('referalCode', res.response.referalCode);
+              localStorage.setItem('referalReward', res.response.referalReward);
+  
+              this.router.navigateByUrl('/dashboard', { state: { affiliateId: res.response.affiliateId } });
+            }
           }
+          
           this.alertMsg.type = 'success';
           this.alertMsg.message = res.successMsg;
         }
@@ -90,7 +95,6 @@ export class AffiliateLoginComponent implements OnInit {
             localStorage.setItem('userData', JSON.stringify(res.response));
             this.router.navigateByUrl('/dashboard', { state: { affiliateId: res.response.affiliateId } });
           }
-
         } else {
           this.alertMsg.type = 'danger';
           this.alertMsg.message = 'Server error'
