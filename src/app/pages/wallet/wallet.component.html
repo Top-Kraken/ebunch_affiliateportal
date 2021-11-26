@@ -10,7 +10,7 @@
                 <div class="d-flex flex-column">
                     <h4 style="text-align: left;">Your Wallet</h4>
                     <div class="d-flex mt-3 justify-content-center">
-                        <span class="tab-amount">128.4</span>
+                        <span class="tab-amount">{{apiData?.walletPoint}}</span>
                         <img src="assets/images/wallet-up.png" alt="wallet-up">
                     </div>
                 </div>
@@ -19,14 +19,14 @@
                 <div class="d-flex flex-column">
                     <h4 style="text-align: left;">Pending</h4>
                     <div class="d-flex mt-3 justify-content-center">
-                        <span class="tab-amount">128.4</span>
+                        <span class="tab-amount">{{apiData?.walletPendingPoint}}</span>
                         <img src="assets/images/wallet-up.png" alt="wallet-up">
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-9">
-            <div id="yourWallet" class="shadow p-4" *ngIf="activeTab == 0">
+            <div id="yourWallet" class="shadow p-4 bg-white" *ngIf="activeTab == 0">
                 <div class="d-flex justify-content-between">
                     <h2>Your Points</h2>
                     <div>
@@ -36,59 +36,38 @@
                                 <div>
                                     <mat-form-field appearance="fill">
                                         <mat-label>Start date</mat-label>
-                                        <input matInput [matDatepicker]="picker" class="border-0">
+                                        <input matInput [matDatepicker]="picker" [(ngModel)]="startDate" class="border-0">
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>
 
                                     <mat-form-field appearance="fill">
                                         <mat-label>End date</mat-label>
-                                        <input matInput [matDatepicker]="picker2" class="border-0">
+                                        <input matInput [matDatepicker]="picker2" [(ngModel)]="endDate" class="border-0">
                                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                         <mat-datepicker #picker2></mat-datepicker>
                                     </mat-form-field>
                                 </div>
-                                <button ngbDropdownItem class="btn btn-default">7 days</button>
-                                <button ngbDropdownItem class="btn btn-default">14 days</button>
-                                <button ngbDropdownItem class="btn btn-default">Month</button>
-                                <button ngbDropdownItem class="btn btn-default">Year</button>
+                                <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('days')" >7 days</button>
+                                <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('days')">14 days</button>
+                                <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('month')">Month</button>
+                                <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('year')">Year</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-column">
-                    <p class="text-uppercase text-muted mb-3">{{date | date :'short'}}</p>
+                <div class="flex flex-column" *ngFor="let trans of apiData?.authorizedTransaction">
+                    <p class="text-uppercase text-muted mb-3">{{trans.createTs | date :'short'}}</p>
                     <div class="pointDiv">
                         <div class="d-flex justify-content-between">
-                            <p>Brand Auto Banner</p>
-                            <span>2x</span>
+                            <p>{{trans.remark}}</p>
+                            <span>{{trans.pointsProvided}}</span>
 
                         </div>
                         <hr />
                     </div>
-
                 </div>
-                <div class="flex flex-column">
-                    <p class="text-uppercase text-muted mb-3">{{date | date :'short'}}</p>
-                    <div class="pointDiv">
-                        <div class="d-flex justify-content-between">
-                            <p>Brand Auto Banner</p>
-                            <span>2x</span>
-
-                        </div>
-                        <hr />
-                    </div>
-                    <div class="pointDiv">
-                        <div class="d-flex justify-content-between">
-                            <p>Brand Auto Banner</p>
-                            <span>2x</span>
-
-                        </div>
-                        <hr />
-                    </div>
-
-                </div>
-                <div class="flex flex-column">
+                <!-- <div class="flex flex-column">
                     <p class="text-uppercase text-muted mb-3">{{date | date :'short'}}</p>
                     <div class="pointDiv">
                         <div class="d-flex justify-content-between">
@@ -107,10 +86,30 @@
                         <hr />
                     </div>
 
-                </div>
+                </div> -->
+                <!-- <div class="flex flex-column">
+                    <p class="text-uppercase text-muted mb-3">{{date | date :'short'}}</p>
+                    <div class="pointDiv">
+                        <div class="d-flex justify-content-between">
+                            <p>Brand Auto Banner</p>
+                            <span>2x</span>
+
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="pointDiv">
+                        <div class="d-flex justify-content-between">
+                            <p>Brand Auto Banner</p>
+                            <span>2x</span>
+
+                        </div>
+                        <hr />
+                    </div>
+
+                </div> -->
             </div>
             <div id="pending" *ngIf="activeTab == 1">
-                <div class='shadow p-4'>
+                <div class='shadow p-4 bg-white'>
                     <div class="d-flex justify-content-between">
                         <h2>Authorized Points</h2>
                         <div>
@@ -140,7 +139,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-column">
+                    <div class="flex flex-column" *ngFor="let trans of apiData?.authorizedTransaction">
+                        <p class="text-uppercase text-muted mb-3">{{trans.createTs | date :'short'}}</p>
+                        <div class="pointDiv">
+                            <div class="d-flex justify-content-between">
+                                <p>{{trans.remark}}</p>
+                                <span>{{trans.pointsProvided}}</span>
+    
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+                    <!-- <div class="flex flex-column">
                         <p class="text-uppercase text-muted mb-3">{{date | date :'short'}}</p>
                         <div class="pointDiv">
                             <div class="d-flex justify-content-between">
@@ -150,18 +160,6 @@
                             </div>
                             <hr />
                         </div>
-    
-                    </div>
-                    <div class="flex flex-column">
-                        <p class="text-uppercase text-muted mb-3">{{date | date :'short'}}</p>
-                        <div class="pointDiv">
-                            <div class="d-flex justify-content-between">
-                                <p>Brand Auto Banner</p>
-                                <span>2x</span>
-    
-                            </div>
-                            <hr />
-                        </div>
                         <div class="pointDiv">
                             <div class="d-flex justify-content-between">
                                 <p>Brand Auto Banner</p>
@@ -169,30 +167,29 @@
                             </div>
                             <hr />
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class='shadow p-4'>
                     <div class="d-flex justify-content-between">
                         <h2>Pending History</h2>
                     </div>
-                    <div class="flex flex-column">
+                    <div class="flex flex-column" *ngFor="let trans of apiData?.pendingTransaction">
+                        <p class="text-uppercase text-muted mb-3">{{trans.createTs | date :'short'}}</p>
+                        <div class="pointDiv">
+                            <div class="d-flex justify-content-between">
+                                <p>{{trans.remark}}</p>
+                                <span>{{trans.pointsProvided}}</span>
+    
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+                    <!-- <div class="flex flex-column">
                         <p class="text-uppercase text-muted mb-3">{{date | date :'short'}}</p>
                         <div class="pointDiv">
                             <div class="d-flex justify-content-between">
                                 <p>Brand Auto Banner</p>
                                 <span>2x</span>
-    
-                            </div>
-                            <hr />
-                        </div>
-    
-                    </div>
-                    <div class="flex flex-column">
-                        <p class="text-uppercase text-muted mb-3">{{date | date :'short'}}</p>
-                        <div class="pointDiv">
-                            <div class="d-flex justify-content-between">
-                                <p>Brand Auto Banner</p>
-                                <span>2x</span>
                             </div>
                             <hr />
                         </div>
@@ -203,7 +200,7 @@
                             </div>
                             <hr />
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
