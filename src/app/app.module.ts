@@ -113,7 +113,7 @@ import { WalletComponent } from './pages/wallet/wallet.component';
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('400832421733820')
+            provider: new FacebookLoginProvider('277274391071647')
           }
         ]
       } as SocialAuthServiceConfig,

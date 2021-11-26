@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ace-demo": {
+    "affiliate-portal": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ace-demo",
+            "outputPath": "dist/affiliate-portal",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -74,10 +74,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ace-demo:build:production"
+              "browserTarget": "affiliate-portal:build:production"
             },
             "development": {
-              "browserTarget": "ace-demo:build:development"
+              "browserTarget": "affiliate-portal:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -85,7 +85,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ace-demo:build"
+            "browserTarget": "affiliate-portal:build"
           }
         },
         "test": {
@@ -109,5 +109,5 @@
       }
     }
   },
-  "defaultProject": "ace-demo"
+  "defaultProject": "affiliate-portal"
 }

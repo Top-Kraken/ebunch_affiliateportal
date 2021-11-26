@@ -53,10 +53,6 @@ const routes: Routes = [
         path: 'wallet',
         component: WalletComponent,
       },
-      // {
-      //   path: 'packages',
-      //   component: PackagesComponent,
-      // }
     ]
   }
 ];
