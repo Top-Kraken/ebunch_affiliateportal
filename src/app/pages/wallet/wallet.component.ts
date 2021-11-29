@@ -9,12 +9,12 @@ import { InitialDataService } from 'src/app/services/initial-data.service';
 })
 export class WalletComponent implements OnInit {
   date = new Date();
-  activeTab:number = 0;
-  startDate:any;
-  endDate:any;
-  days:number = 7;
-  apiData:any;
-  @ViewChild('myDrop') myDrop:NgbDropdown;
+  activeTab: number = 0;
+  startDate: any;
+  endDate: any;
+  days: number = 7;
+  apiData: any;
+  @ViewChild('myDrop') myDrop: NgbDropdown;
   constructor(
     private dataService: InitialDataService,
   ) { }
@@ -23,7 +23,7 @@ export class WalletComponent implements OnInit {
     this.getAffiliateWalletData('days');
   }
 
-  getAffiliateWalletData(prop:string) {
+  getAffiliateWalletData(prop: string) {
     let req;
     if (prop == 'range') {
       req = {
@@ -45,14 +45,13 @@ export class WalletComponent implements OnInit {
         filter: 'year',
       }
     }
-    
-    this.dataService.affililateWallet(req).subscribe( res =>{
+
+    this.dataService.affililateWallet(req).subscribe(res => {
       this.apiData = res.response;
     })
     this.myDrop?.close();
   }
-  onTabClick(num:number){
+  onTabClick(num: number) {
     this.activeTab = num;
   }
-
 }
