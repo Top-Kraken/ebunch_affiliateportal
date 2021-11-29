@@ -30,10 +30,10 @@
                 <div class="d-flex justify-content-between">
                     <h2>Your Points</h2>
                     <div>
-                        <div ngbDropdown>
+                        <div ngbDropdown [autoClose]="false"  #myDrop="ngbDropdown">
                             <button class="btn btn-sort" id="gfg" ngbDropdownToggle>Select:</button>
                             <div ngbDropdownMenu="gfg">
-                                <div>
+                                <div class="d-flex">
                                     <mat-form-field appearance="fill">
                                         <mat-label>Start date</mat-label>
                                         <input matInput [matDatepicker]="picker" [(ngModel)]="startDate" class="border-0">
@@ -43,7 +43,7 @@
 
                                     <mat-form-field appearance="fill">
                                         <mat-label>End date</mat-label>
-                                        <input matInput [matDatepicker]="picker2" [(ngModel)]="endDate" class="border-0">
+                                        <input matInput [matDatepicker]="picker2" [(ngModel)]="endDate" class="border-0" (dateChange)="getAffiliateWalletData('range')">
                                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                         <mat-datepicker #picker2></mat-datepicker>
                                     </mat-form-field>
@@ -113,10 +113,10 @@
                     <div class="d-flex justify-content-between">
                         <h2>Authorized Points</h2>
                         <div>
-                            <div ngbDropdown>
+                            <div ngbDropdown [autoClose]="false" #myDrop="ngbDropdown">
                                 <button class="btn btn-sort" id="gfg" ngbDropdownToggle>Select:</button>
                                 <div ngbDropdownMenu="gfg">
-                                    <div>
+                                    <div class='d-flex'>
                                         <mat-form-field appearance="fill">
                                             <mat-label>Start date</mat-label>
                                             <input matInput [matDatepicker]="picker" class="border-0">
@@ -126,7 +126,7 @@
     
                                         <mat-form-field appearance="fill">
                                             <mat-label>End date</mat-label>
-                                            <input matInput [matDatepicker]="picker2" class="border-0">
+                                            <input matInput [matDatepicker]="picker2" class="border-0" (dateChange)="getAffiliateWalletData('range')">
                                             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                             <mat-datepicker #picker2></mat-datepicker>
                                         </mat-form-field>

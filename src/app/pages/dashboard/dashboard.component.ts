@@ -151,24 +151,30 @@ export class DashboardComponent implements OnInit {
       href: ele.bannerUrlLink
     },  (response) =>{
       console.log(response);
+      console.log(typeof response)
       let req = {
         bannerId: ele.bannerId,
         campaignId: null
       }
-      this.dataService.sharedOnFb(req).subscribe(res =>{
-        if(res.responseCode == 0){
-          this.alertMsg.type = 'success';
-          this.alertMsg.message = res.successMsg;
-          this.getdashboardData();
-        }
-        else if (res.responseCode == -1) {
-          this.alertMsg.type = 'danger';
-          this.alertMsg.message = res.errorMsg;
-        } else {
-          this.alertMsg.type = 'danger';
-          this.alertMsg.message = 'Server error'
-        }
-      })
+      if((typeof response) == 'object'){
+        this.dataService.sharedOnFb(req).subscribe(res =>{
+          if(res.responseCode == 0){
+            this.alertMsg.type = 'success';
+            this.alertMsg.message = res.successMsg;
+            this.getdashboardData();
+          }
+          else if (res.responseCode == -1) {
+            this.alertMsg.type = 'danger';
+            this.alertMsg.message = res.errorMsg;
+          } else {
+            this.alertMsg.type = 'danger';
+            this.alertMsg.message = 'Server error'
+          }
+        })
+      }else{
+        alert("Banner not shared to facebook")
+      }
+      
     });
   }
 }

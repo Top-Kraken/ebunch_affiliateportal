@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class WalletComponent implements OnInit {
   endDate:any;
   days:number = 7;
   apiData:any;
+  @ViewChild('myDrop') myDrop:NgbDropdown;
   constructor(
     private dataService: InitialDataService,
   ) { }
@@ -45,11 +47,12 @@ export class WalletComponent implements OnInit {
     }
     
     this.dataService.affililateWallet(req).subscribe( res =>{
-      console.log(res);
       this.apiData = res.response;
     })
+    this.myDrop?.close();
   }
   onTabClick(num:number){
     this.activeTab = num;
   }
+
 }

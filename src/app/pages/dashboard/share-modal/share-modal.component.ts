@@ -46,19 +46,24 @@ export class ShareModalComponent implements OnInit {
         bannerId: null,
         campaignId: this.campaign.campaignId
       }
-      this.dataService.sharedOnFb(req).subscribe(res => {
-        if (res.responseCode == 0) {
-          this.alertMsg.type = 'success';
-          this.alertMsg.message = res.successMsg;
-        }
-        else if (res.responseCode == -1) {
-          this.alertMsg.type = 'danger';
-          this.alertMsg.message = res.errorMsg;
-        } else {
-          this.alertMsg.type = 'danger';
-          this.alertMsg.message = 'Server error'
-        }
-      })
+      if((typeof response) == 'object'){
+        this.dataService.sharedOnFb(req).subscribe(res => {
+          if (res.responseCode == 0) {
+            this.alertMsg.type = 'success';
+            this.alertMsg.message = res.successMsg;
+          }
+          else if (res.responseCode == -1) {
+            this.alertMsg.type = 'danger';
+            this.alertMsg.message = res.errorMsg;
+          } else {
+            this.alertMsg.type = 'danger';
+            this.alertMsg.message = 'Server error'
+          }
+        })
+      }else{
+        alert("Campaign not shared to facebook")
+      }
+     
     });
   }
   copyLink() {
