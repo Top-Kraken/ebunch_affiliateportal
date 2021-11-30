@@ -38,6 +38,8 @@ input::placeholder {
 label{
     text-transform: uppercase;
     color:#b3b3b3;
+    margin-bottom: 4px;
+    margin-top: 4px;
 }
 ::ng-deep .ng-select .ng-select-container{
     border:0 !important;
@@ -130,7 +132,7 @@ label{
         padding:6px 5rem;
     }
     .page-container{
-        padding:1rem 4rem;
+        padding:1.5rem 4rem;
     }
     .settingImage{
         min-width: 180px;

@@ -65,3 +65,8 @@ textarea::placeholder {
     text-align: left;
     font-size: 12px;
 }
+@media only screen and (min-device-width: 768px){
+    .page-container{
+        padding: 1.5rem 4rem;
+    }
+}

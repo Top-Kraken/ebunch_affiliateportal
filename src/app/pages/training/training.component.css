@@ -85,4 +85,7 @@ textarea::placeholder {
         padding-right: 4rem;
         padding-left: 4rem;
     }
+    .page-container{
+        padding: 1.5rem 4rem;
+    }
 }

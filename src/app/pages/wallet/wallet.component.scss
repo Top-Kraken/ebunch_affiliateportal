@@ -14,7 +14,7 @@
     margin-bottom: 2rem;
     border-right: 4px solid transparent;
     padding:1.4rem 1rem;
-    opacity: .6;
+    opacity: .5;
 }
 .activeTab{
     border-right: 4px solid #a63da1;
@@ -42,4 +42,8 @@ hr{
     background-color: white;
     margin:4px
 }
-
+@media only screen and (min-device-width: 768px){
+    .page-container{
+        padding: 1.5rem 4rem;
+    }
+}

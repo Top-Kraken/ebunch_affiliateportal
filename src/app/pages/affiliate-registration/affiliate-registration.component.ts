@@ -33,7 +33,7 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
       url: 'assets/images/form3.png'
     }
   ];
-  
+  showPasswordInput:boolean = true;
   alertMsg: any = {
     type: '',
     message: ''
@@ -72,11 +72,14 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
     this.regForm3 = this._formBuilder.group({
       otpNumber: [1111, Validators.required]
     });
+    // if (history.state.affiliateId) {
+    //   this.isLinear = false;
+    //   setTimeout(() => {
+    //     this.stepper.selectedIndex = 2;
+    //   }, 1);
+    // }
     if (history.state.affiliateId) {
-      this.isLinear = false;
-      setTimeout(() => {
-        this.stepper.selectedIndex = 2;
-      }, 1);
+      this.showPasswordInput = false;
     }
     
     // this.secondFormGroup = this._formBuilder.group({
@@ -119,6 +122,9 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
   submit(){
     let formObj = {...this.regForm1.value,...this.regForm2.value};
     if (this.regForm2.valid && this.regForm1.valid) {
+      if(history.state.affiliateId){
+        formObj.affiliateId = history.state.affiliateId
+      }
       this.dataService.register(formObj).subscribe(res => {
         if (res.responseCode == 0) {
           this.alertMsg.type = 'success';
