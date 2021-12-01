@@ -291,5 +291,23 @@ agm-map{
     }
     
 }
+@media screen and (device-aspect-ratio: 40/71) {
+    .header{
+        padding:8px;
+    }
+    #mobile-login-img{
+        top:14px;
+    }
+    .mt-5{
+        margin-top:2rem !important;
+    }
+    .mb-5{
+        margin-bottom:2rem !important;
+    }
+    ::ng-deep .mat-step-icon {
+        width: 15px !important;
+        height: 15px !important;
+    }
+ }
 
 

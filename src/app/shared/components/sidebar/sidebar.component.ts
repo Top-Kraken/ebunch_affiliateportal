@@ -32,7 +32,6 @@ export class SidebarComponent implements OnInit {
       this.toggleSideBarForMe.emit();
       //this.isExpanded = !this.isExpanded
     } else {
-      alert(8);
       this.isPartialClose = !this.isPartialClose;
 
     }

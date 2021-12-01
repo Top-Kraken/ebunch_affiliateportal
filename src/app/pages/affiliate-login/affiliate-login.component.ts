@@ -49,7 +49,7 @@ export class AffiliateLoginComponent implements OnInit {
         if (res.responseCode == 0) {
           localStorage.setItem('affiliateId', res.response.affiliateId);
           if(res.response.firstTimeLogin == 1){
-            this.router.navigateByUrl('/', {state: { affiliateId: res.response.affiliateId }});
+            this.router.navigateByUrl('/', {state: { affiliateId: res.response.affiliateId, page:'login' }});
           }else if(res.response.firstTimeLogin == 0){
             if (res.response.phoneVerified == 0) {
               this.router.navigateByUrl('/verify', { state: { affiliateId: res.response.affiliateId } });
@@ -87,7 +87,7 @@ export class AffiliateLoginComponent implements OnInit {
         } else if (res.responseCode == 0) {
 
           if (res.response.phoneVerified == 0) {
-            this.router.navigateByUrl('/verify', { state: { affiliateId: res.response.affiliateId, page:'login' } });
+            this.router.navigateByUrl('/verify', { state: { affiliateId: res.response.affiliateId } });
           } else {
             localStorage.setItem('token', res.response.token);
             localStorage.setItem('referalCode', res.response.referalCode);
