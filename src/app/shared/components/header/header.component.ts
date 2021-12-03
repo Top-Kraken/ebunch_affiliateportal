@@ -39,10 +39,12 @@ export class HeaderComponent implements OnInit {
   }
   
   getNotifications(){
-    this.dataService.getAffiliateNotification().subscribe(res => {
-      this.notificationList = res.response.notificationList;
-      this.isNewNotification = res.response.unReadNotification
-    });
+    if(localStorage.getItem('userData')){
+      this.dataService.getAffiliateNotification().subscribe(res => {
+        this.notificationList = res.response.notificationList;
+        this.isNewNotification = res.response.unReadNotification
+      });
+    }
   }
   toggleSideBar(){
     this.toggleSideBarForMe.emit();

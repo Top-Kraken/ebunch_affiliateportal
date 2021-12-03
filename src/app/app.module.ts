@@ -108,7 +108,7 @@ import { WalletComponent } from './pages/wallet/wallet.component';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '873717148143-d8d9st2177snv3f1k04n7b0gh48p45ru.apps.googleusercontent.com'
+              '386028960055-4jpmredro97vu6lm0u1bir8tja7c4p2f.apps.googleusercontent.com'
             )
           },
           {
