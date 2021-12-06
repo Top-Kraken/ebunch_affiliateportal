@@ -117,13 +117,6 @@ export class SettingsComponent implements OnInit {
           this.alertMsg.type = 'danger';
           this.alertMsg.message = res.errorMsg
         } else if (res.responseCode == 0) {
-          // this.alertMsg.type = 'success';
-          // this.userData.firstName = this.profileForm.value.firstName;
-          // this.userData.lastName = this.profileForm.value.lastName;
-          // this.userData.email = this.profileForm.value.email;
-          // this.userData.phone = this.profileForm.value.phone;
-          // this.userData.intrestAreaList = this.profileForm.value.intrestAreaList;
-          // this.userData.companyList = this.profileForm.value.firstName;
 
           this.profileForm.patchValue(res.response);
           localStorage.setItem('userData', JSON.stringify(res.response));
