@@ -93,7 +93,7 @@
 
             <div class="card w-100 banner box-shadow mb-5 mb-md-0"
                 *ngFor="let banner of apiData?.bannerList | paginate: { id: 'pagination1', itemsPerPage: 1, currentPage: p };let i = index"
-                [style.background-image]="'url(' + apiData?.bannerList[i].bannerImageLink + ')'">
+                [style.background-image]="'url(' + banner.bannerImageLink + ')'">
                 <div class="banner-content mb-2">
                     <h1 class="text-light mb-0 ms-1">{{banner.bannerName}} <span
                             style="font-size: 12px;color:gray">{{banner.bannerStartDate | date :'shortDate'}}</span>
