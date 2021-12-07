@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SwiperComponent } from 'ngx-useful-swiper';
 import { InitialDataService } from 'src/app/services/initial-data.service';
@@ -23,7 +23,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  p: number;
+  p: number = 1;
   p1: number;
   alertMsg: any = {
     type: '',
@@ -72,6 +72,7 @@ export class DashboardComponent implements OnInit {
 
   };
   apiData: any;
+  @ViewChild('pagination1') pagination1: ElementRef;
   //@ViewChild('usefulSwiper1',{static: false}) usefulSwiper1: any;
   constructor(
     private dataService: InitialDataService,
@@ -90,6 +91,16 @@ export class DashboardComponent implements OnInit {
     this.dataService.getDashboardData(req).subscribe(res => {
       this.apiData = res.response;
     })
+    setInterval(()=>{ 
+      this.setBanner();
+    }, 3000);
+  }
+  setBanner(){
+    if(this.p == this.apiData?.bannerList.length){
+      this.p = 1
+    }else{
+      this.p++;
+    }
   }
   getdashboardData(){
     let req = {
@@ -103,11 +114,12 @@ export class DashboardComponent implements OnInit {
     this.dataService.getDashboardData(req).subscribe(res => {
       this.apiData = res.response;
     })
+
   }
   close() {
     this.alertMsg.message = '';
   }
-  sortTable(type: any) {
+  sortTable(type: any, val:string) {
     let req = {
       bannerPage: 0,
       bannerSize: 10,
@@ -118,7 +130,12 @@ export class DashboardComponent implements OnInit {
     }
     this.dataService.getDashboardData(req).subscribe(res => {
       console.log(res);
-      this.apiData = res.response;
+      if(val == 'banner'){
+        this.apiData.bannerList = res.response.bannerList;
+      }else{
+        this.apiData.campaignList = res.response.campaignList;
+      }
+      
     })
   }
   getPage(page: any) {

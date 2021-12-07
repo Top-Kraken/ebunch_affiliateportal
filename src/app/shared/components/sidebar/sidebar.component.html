@@ -1,16 +1,20 @@
 <mat-nav-list>
     <!-- <img style="height: 70px; padding-left: 20px; padding-bottom: 10px;" src="/assets/logo.png"> -->
     <div>
-        <div class="ps-3 text-light">
-            <img [src]="userPhotoUrl ? userPhotoUrl :'assets/images/profile-pic.png'" alt="profile-pic" class="img-fluid" id="profile-pic">
-            <h3 *ngIf="!isPartialClose" class="my-0" id="userName">{{userData.firstName}}</h3>
-            <p *ngIf="!isPartialClose" ><i>{{userData.email}}</i></p>
-            <p *ngIf="!isPartialClose" id="date">{{date1 | date: 'medium'}}</p>
+        <div class="d-flex ps-3 mt-2 text-light">
+            <div id="profile-wrapper">
+                <img [src]="userPhotoUrl ? userPhotoUrl :'assets/images/profile-pic.png'" alt="profile-pic" class="img-fluid" id="profile-pic">
+            </div>
+            <div class="ms-2 d-flex flex-column justify-content-center">
+                <h3 *ngIf="!isPartialClose" class="my-0" id="userName">{{userData.firstName}} {{userData.lastName}}</h3>
+                <p *ngIf="!isPartialClose" class="emailText"><i>{{userData.emailId}}</i></p>
+            </div>
+           
         </div>
         <div class="px-3 text-light" *ngIf="!isPartialClose">
             <hr style="color:#d8d8d8" />
         </div>
-
+        <p class="ps-3" *ngIf="!isPartialClose" id="date">{{date1 | date: 'medium'}}</p>
         <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard">
             <mat-icon>home</mat-icon>
             <span *ngIf="!isPartialClose">Home</span>

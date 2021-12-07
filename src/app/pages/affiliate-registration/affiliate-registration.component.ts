@@ -80,6 +80,8 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
     // }
     if (history.state.affiliateId) {
       this.showPasswordInput = false;
+      this.regForm1.controls.password.setValidators(null);
+      this.regForm1.controls.password.updateValueAndValidity();
     }
     
     // this.secondFormGroup = this._formBuilder.group({
