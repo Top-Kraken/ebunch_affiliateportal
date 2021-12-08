@@ -57,7 +57,7 @@ export class AffiliateLoginComponent implements OnInit {
               localStorage.setItem('token', res.response.token);
               localStorage.setItem('referalCode', res.response.referalCode);
               localStorage.setItem('referalReward', res.response.referalReward);
-  
+              localStorage.setItem('userData', JSON.stringify(res.response));
               this.router.navigateByUrl('/dashboard', { state: { affiliateId: res.response.affiliateId } });
             }
           }
