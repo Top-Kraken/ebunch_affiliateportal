@@ -129,7 +129,6 @@ export class DashboardComponent implements OnInit {
       campaignSortBy: type
     }
     this.dataService.getDashboardData(req).subscribe(res => {
-      console.log(res);
       if(val == 'banner'){
         this.apiData.bannerList = res.response.bannerList;
       }else{
@@ -168,7 +167,6 @@ export class DashboardComponent implements OnInit {
       href: ele.bannerUrlLink
     },  (response) =>{
       console.log(response);
-      console.log(typeof response)
       let req = {
         bannerId: ele.bannerId,
         campaignId: null

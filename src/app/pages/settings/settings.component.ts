@@ -111,7 +111,6 @@ export class SettingsComponent implements OnInit {
       let formData = new FormData();
       formData.append('data', JSON.stringify(this.profileForm.value));
       formData.append('userPhoto', this.selectedUserImg);
-      console.log(this.profileForm.value);
       this.dataService.updateAffiliateSetting(formData).subscribe( res =>{
         if (res.responseCode == -1) {
           this.alertMsg.type = 'danger';

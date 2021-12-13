@@ -101,10 +101,8 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
     
   }
   onUsernameEnter(eve:any){
-    console.log(eve.target.value);
     let username = eve.target.value;
     this.dataService.checkUsernameExist(username).subscribe( res =>{
-      console.log(res);
       if(res.responseCode == 0){
         this.usernameValid = 1;
       }else if(res.responseCode == -1){
