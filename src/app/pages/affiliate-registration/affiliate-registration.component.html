@@ -83,6 +83,10 @@
                                 <input matInput type="number" class="form-control" id="personalPhone" placeholder="Phone"
                                     formControlName="phone">
                             </div>
+                            <div class="form-group">
+                                <input matInput type="text" class="form-control"  placeholder="Referal Code (optional)"
+                                    formControlName="referalCode">
+                            </div>
                             <div class="d-grid mt-4">
                                 <button mat-button matStepperNext class="btn btn-dark mb-5 mb-md-0"
                                     [disabled]="(!regForm1.valid) || (usernameValid != 1)">Next</button>
