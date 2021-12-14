@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-refer',
   templateUrl: './refer.component.html',
@@ -23,7 +23,8 @@ export class ReferComponent implements OnInit {
   constructor(
     private dataService: InitialDataService,
     private clipboard: Clipboard,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -42,6 +43,7 @@ export class ReferComponent implements OnInit {
     this.alertMsg.message = '';
   }
   sendInvitation() {
+    this.spinner.show();
     let req = {
       emailId: this.referForm.value.email.split(','),
       description: this.referForm.value.description
@@ -52,6 +54,7 @@ export class ReferComponent implements OnInit {
         this.alertMsg.type = 'success';
         this.alertMsg.message = res.successMsg;
       }
+      this.spinner.hide();
     });
   }
   copyCode() {

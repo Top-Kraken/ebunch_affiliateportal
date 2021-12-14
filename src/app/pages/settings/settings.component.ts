@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { InitialDataService } from 'src/app/services/initial-data.service';
 import { ChangePasswordModalComponent } from './change-password-modal/change-password-modal.component';
-
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -33,6 +33,7 @@ export class SettingsComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private dataService: InitialDataService,
     public dialog: MatDialog,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -100,6 +101,7 @@ export class SettingsComponent implements OnInit {
 
   updateChanges() {
     if (this.profileForm.valid) {
+      this.spinner.show();
       //update socila info
       let obj = {
         facebookLink: this.facebookLink,
@@ -126,6 +128,7 @@ export class SettingsComponent implements OnInit {
           this.alertMsg.type = 'danger';
           this.alertMsg.message = "Server error"
         }
+        this.spinner.hide();
       })
     }
   }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule, Meta } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -44,6 +44,7 @@ import { ReferComponent } from './pages/refer/refer.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ChangePasswordModalComponent } from './pages/settings/change-password-modal/change-password-modal.component';
 import { WalletComponent } from './pages/wallet/wallet.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -91,8 +92,9 @@ import { WalletComponent } from './pages/wallet/wallet.component';
     SocialLoginModule,
     MatDatepickerModule,
     MatNativeDateModule,
-
+    NgxSpinnerModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     Meta,
     {
