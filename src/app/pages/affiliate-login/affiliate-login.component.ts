@@ -78,13 +78,10 @@ export class AffiliateLoginComponent implements OnInit {
     if (this.login.valid) {
       this.login.value.loginType = 'local';
       this.dataService.login(this.login.value).subscribe(res => {
-        console.log(res);
         if (res.responseCode == -1) {
           this.alertMsg.type = 'danger';
           this.alertMsg.message = res.errorMsg
-          //this.router.navigateByUrl('/review', { state: { msg: res.successMsg } });
         } else if (res.responseCode == 0) {
-
           if (res.response.phoneVerified == 0) {
             this.router.navigateByUrl('/verify', { state: { affiliateId: res.response.affiliateId } });
           } else {

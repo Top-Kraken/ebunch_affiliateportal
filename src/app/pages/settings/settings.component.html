@@ -10,8 +10,6 @@
                     <h4 class="text-uppercase text-muted">User Photo</h4>
                     <div class="position-relative m-auto settingImage mb-3"
                         [ngStyle]="{'background-image': 'url(' + selectedUserImgPath + ')'}">
-                        <!-- <img [src]="selectedUserImgPath ? selectedUserImgPath :'assets/images/profile-pic.png'" alt=""
-                            class="img-fluid"> -->
                         <input #userLogo type="file" id="companyLogoUpload" (change)="onFileChanged($event,'user')"
                             style="display:none" accept="image/*" />
                         <div class="camera-icon">
@@ -60,20 +58,11 @@
                 </div>
               
                 <div class="form-group d-flex my-5">
-                    <!-- <div class="col-4">
-                                <input matInput type="text" class="form-control" [value]="userData.password"
-                                    id="password" placeholder="password" readonly
-                                    style="border:none;background: transparent;display: none;">
-                            </div> -->
                     <div class="flex-grow-1 text-center">
                         <button class="btn btn-password w-75 mx-auto" (click)="openChangePasswordDialog()">Change
                             Password</button>
                     </div>
                 </div>
-                <!-- <div class="d-flex mt-4">
-                            <button mat-button class="btn btn-default btn-back">Back</button>
-                            <button mat-button (click)="submit()" class="btn btn-dark flex-grow-1" [disabled]="!profileForm.valid">SUBMIT</button>
-                        </div> -->
                 <div *ngIf="alertMsg.message"
                     class="alert fade show d-flex justify-content-between align-items-center mt-2 p-2"
                     [ngClass]="(alertMsg.type == 'danger')?'alert-danger': 'alert-success'" role="alert">

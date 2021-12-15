@@ -73,6 +73,7 @@ export class DashboardComponent implements OnInit {
   };
   apiData: any;
   @ViewChild('pagination1') pagination1: ElementRef;
+  // @ViewChild('pagination2') pagination2: ElementRef;
   //@ViewChild('usefulSwiper1',{static: false}) usefulSwiper1: any;
   constructor(
     private dataService: InitialDataService,
