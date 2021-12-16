@@ -44,7 +44,8 @@
     margin-bottom: 12px;
 }
 .card1{
-    width:320px;
+    width:100%;
+    height: 120px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
 }
