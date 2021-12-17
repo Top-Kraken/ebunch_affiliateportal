@@ -75,12 +75,90 @@ export class DashboardComponent implements OnInit {
   @ViewChild('pagination1') pagination1: ElementRef;
   // @ViewChild('pagination2') pagination2: ElementRef;
   //@ViewChild('usefulSwiper1',{static: false}) usefulSwiper1: any;
+  //graph vars
+  single: any[];
+  single2: any[];
+  multi: any[];
+
+  view: any[] = [700, 400];
+
+  // options
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Country';
+  showYAxisLabel = true;
+  yAxisLabel = 'Population';
+
+  colorScheme = {
+    domain: ['#ddb4d9', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
   constructor(
     private dataService: InitialDataService,
     public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
+    this.single = [
+      {
+        "name": "12/17/2021",
+        "value": 5
+      },
+      {
+        "name": "12/18/2021",
+        "value": 3
+      },
+      {
+        "name": "12/19/2021",
+        "value": 12
+      },
+      {
+        "name": "12/20/2021",
+        "value": 13
+      },
+      {
+        "name": "12/21/2021",
+        "value": 0
+      } ,
+      {
+        "name": "12/22/2021",
+        "value": 0
+      },{
+        "name": "12/23/2021",
+        "value": 20
+      }
+    ];
+    this.single2 = [
+      {
+        "name": "12/17/2021",
+        "value": 5
+      },
+      {
+        "name": "12/18/2021",
+        "value": 4
+      },
+      {
+        "name": "12/19/2021",
+        "value": 3
+      },
+      {
+        "name": "12/20/2021",
+        "value": 75
+      },
+      {
+        "name": "12/21/2021",
+        "value": 3
+      } ,
+      {
+        "name": "12/22/2021",
+        "value": 0
+      },{
+        "name": "12/23/2021",
+        "value": 45
+      }
+    ];
     let req = {
       bannerPage: 0,
       bannerSize: 10,

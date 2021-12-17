@@ -45,6 +45,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { ChangePasswordModalComponent } from './pages/settings/change-password-modal/change-password-modal.component';
 import { WalletComponent } from './pages/wallet/wallet.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     SocialLoginModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxChartsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

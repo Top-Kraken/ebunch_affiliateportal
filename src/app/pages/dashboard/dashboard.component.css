@@ -16,6 +16,10 @@
 .banner h1{
     max-width: 340px;
 }
+.avatar{
+    width: 40px;
+    margin-right: 16px;
+}
 .banner-content{
     position: absolute;
     bottom:0;
@@ -52,6 +56,9 @@
 .shadow{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+}
+.shadow-sm{
+    border: 1px solid #dbdbdb;
 }
 table 
     {
@@ -197,4 +204,21 @@ table
         color: black !important;
         background:transparent !important;
     }
+}
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #a63da1;
 }
