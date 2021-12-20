@@ -12,11 +12,13 @@ export interface PeriodicElement {
   image: string;
   action: any
 }
+let single:any[] = []
+
 const ELEMENT_DATA: PeriodicElement[] = [
   { duration: "23 sep 2021 - 27 sep 2021", title: 'Henson Nation', created_by: 'Brand Auto Dealer', image: 'https://picsum.photos/100', action: '' },
 
 ];
-
+let single2:any[]  = [];
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -101,64 +103,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.single = [
-      {
-        "name": "12/17/2021",
-        "value": 5
-      },
-      {
-        "name": "12/18/2021",
-        "value": 3
-      },
-      {
-        "name": "12/19/2021",
-        "value": 12
-      },
-      {
-        "name": "12/20/2021",
-        "value": 13
-      },
-      {
-        "name": "12/21/2021",
-        "value": 0
-      } ,
-      {
-        "name": "12/22/2021",
-        "value": 0
-      },{
-        "name": "12/23/2021",
-        "value": 20
-      }
-    ];
-    this.single2 = [
-      {
-        "name": "12/17/2021",
-        "value": 5
-      },
-      {
-        "name": "12/18/2021",
-        "value": 4
-      },
-      {
-        "name": "12/19/2021",
-        "value": 3
-      },
-      {
-        "name": "12/20/2021",
-        "value": 75
-      },
-      {
-        "name": "12/21/2021",
-        "value": 3
-      } ,
-      {
-        "name": "12/22/2021",
-        "value": 0
-      },{
-        "name": "12/23/2021",
-        "value": 45
-      }
-    ];
+   
     let req = {
       bannerPage: 0,
       bannerSize: 10,
@@ -169,7 +114,29 @@ export class DashboardComponent implements OnInit {
     }
     this.dataService.getDashboardData(req).subscribe(res => {
       this.apiData = res.response;
+      this.single = res.response.bannerEngagement;
+      let arr = [];
+      for(let i = 0; i< this.apiData.bannerEngagement.length; i++){
+        let obj = {
+          name: this.apiData.bannerEngagement[i].date,
+          value: this.apiData.bannerEngagement[i].count
+        }
+        arr.push(obj);
+      }
+      single = arr;
+      Object.assign(this, {single})
+      let arr2 = []
+      for(let i = 0; i< this.apiData.campaignEngagement.length; i++){
+        let obj = {
+          name: this.apiData.campaignEngagement[i].date,
+          value: this.apiData.campaignEngagement[i].count
+        }
+        arr.push(obj);
+      }
+      single2 = arr;
+      Object.assign(this, {single2})
     })
+
     setInterval(()=>{ 
       this.setBanner();
     }, 3000);
