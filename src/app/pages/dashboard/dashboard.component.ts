@@ -212,7 +212,6 @@ export class DashboardComponent implements OnInit {
       method: 'share',
       href: ele.bannerUrlLink
     },  (response) =>{
-      console.log(response);
       let req = {
         bannerId: ele.bannerId,
         campaignId: null

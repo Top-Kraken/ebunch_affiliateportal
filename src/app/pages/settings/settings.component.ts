@@ -38,8 +38,6 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
-
-    console.log(this.userData);
     this.selectedCompanyLogoPath = this.userData.userImage;
     this.selectedUserImgPath = this.userData.userImage;
     this.facebookLink = this.userData.facebookLink;
@@ -94,8 +92,6 @@ export class SettingsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      //this.animal = result;
     });
   }
 

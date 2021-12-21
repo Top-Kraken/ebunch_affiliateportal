@@ -27,7 +27,6 @@ export class ShareModalComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.data);
     this.campaign = this.data;
   }
 
@@ -41,7 +40,6 @@ export class ShareModalComponent implements OnInit {
       method: 'share',
       href: this.campaign.shortUrlLink
     }, (response: ShareDialogResponse) => {
-      console.log(response);
       let req = {
         bannerId: null,
         campaignId: this.campaign.campaignId

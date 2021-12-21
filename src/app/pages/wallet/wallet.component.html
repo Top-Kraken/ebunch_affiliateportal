@@ -8,7 +8,7 @@
         <div class="col-md-3 p-0">
             <div class="card custom-tab" [ngClass]="{'activeTab': activeTab == 0}" (click)="onTabClick(0)">
                 <div class="d-flex flex-column">
-                    <h4 style="text-align: left;">Your Wallet</h4>
+                    <h4 class="text-sm-center text-md-left">Your Wallet</h4>
                     <div class="d-flex mt-3 justify-content-center">
                         <span class="tab-amount">{{apiData?.walletPoint}}</span>
                         <img src="assets/images/wallet-up.png" alt="wallet-up">
@@ -16,8 +16,8 @@
                 </div>
             </div>
             <div class="card custom-tab" [ngClass]="{'activeTab': activeTab == 1}" (click)="onTabClick(1)">
-                <div class="d-flex flex-column">
-                    <h4 style="text-align: left;">Pending</h4>
+                <div class="d-flex flex-column mb-2">
+                    <h4 class="text-sm-center text-md-left">Pending</h4>
                     <div class="d-flex mt-3 justify-content-center">
                         <span class="tab-amount">{{apiData?.walletPendingPoint}}</span>
                         <img src="assets/images/wallet-up.png" alt="wallet-up">
