@@ -113,7 +113,6 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
     });
   }
   public onStepChange(event: any): void {
-    console.log(event.selectedIndex);
     this.currentStepperImage= this.stepperImages[event.selectedIndex].url;
   }
 

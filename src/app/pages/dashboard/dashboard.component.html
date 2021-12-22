@@ -22,12 +22,12 @@
         <div class="col-md-12 p-0">
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-end">
-                    
+
                 </div>
             </div>
             <div class="row">
 
-                <div class="col-md-2">
+                <div class="col-md-2 mb-2">
                     <div class="card card1 flex-grow-1 me-1 text-left px-3 py-3" style="background: #9368c8;">
                         <div>
                             <img src="assets/images/total-shares.png" alt="">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-2 mb-2">
                     <div class="card card1 flex-grow-1 me-1 text-left px-3 py-3 ">
                         <div style="height: 30px;width: 10px;">
                         </div>
@@ -45,7 +45,7 @@
                         <p class="text-muted aleft bold">Campaigns Shared
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 mb-2">
                     <div class="card card1 flex-grow-1 me-1 text-left px-3 py-3">
                         <div style="height: 30px;width: 10px;">
                         </div>
@@ -53,7 +53,7 @@
                         <p class="text-muted aleft bold">Banners Shared
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 mb-2">
                     <div class="card card1 flex-grow-1 me-1 text-left px-3 py-3">
                         <div style="height: 30px;width: 10px;">
                         </div>
@@ -61,7 +61,7 @@
                         <p class="text-muted aleft bold">Total Following
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-2">
                     <div class="card card1 color-bg px-3 py-3 position-relative" style="background: #a63da1;">
                         <div>
                             <img src="assets/images/total-reg.png" alt="" class="card-icon">
@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12 p-0 mt-5">
+        <div class="col-md-12 p-0 mt-4">
             <div class="row">
                 <div class="col-md-5">
                     <h3>Recent Ponits</h3>
@@ -101,23 +101,31 @@
 
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-7 mt-3 mt-md-0">
                     <mat-tab-group>
                         <mat-tab label="Banner Engagement">
-                            <div class="px-3">
-                                <ngx-charts-bar-vertical style="width: 100%;" [yAxis]="showYAxis" [results]="single"
-                                [gradient]="gradient" [yAxisLabel]="yAxisLabel">
-                                </ngx-charts-bar-vertical>
+                            <div class="pt-2">
+                                <div #containerRef>
+                                    <ngx-charts-bar-vertical
+                                        [view]="[containerRef.offsetWidth, containerRef.offsetHeight]"
+                                        [yAxis]="showYAxis" [results]="single" [gradient]="gradient"
+                                        [yAxisLabel]="yAxisLabel">
+                                    </ngx-charts-bar-vertical>
+                                </div>
                             </div>
-                            
+
+
                         </mat-tab>
                         <mat-tab label="Campaign Engagement">
-                            <div class="px-3">
-                                <ngx-charts-bar-vertical [results]="single2" [yAxis]="showYAxis"
-                                [gradient]="gradient" [yAxisLabel]="yAxisLabel">
-                            </ngx-charts-bar-vertical>
+                            <div class="pt-2">
+                                <div #containerRef1>
+                                    <ngx-charts-bar-vertical
+                                        [view]="[containerRef1.offsetWidth, containerRef1.offsetHeight]"
+                                        [results]="single2" [yAxis]="showYAxis" [gradient]="gradient"
+                                        [yAxisLabel]="yAxisLabel">
+                                    </ngx-charts-bar-vertical>
+                                </div>
                             </div>
-                            
                         </mat-tab>
                     </mat-tab-group>
                 </div>
@@ -168,7 +176,7 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="Campaigns">
-                    <ng-container>
+                    <ng-template matTabContent>
                         <div class="col-md-12 p-0 mt-2 d-flex justify-content-between">
                             <h2>Campaigns</h2>
                             <div ngbDropdown>
@@ -180,7 +188,8 @@
                                     <button ngbDropdownItem class="btn btn-default"
                                         (click)="sortTable('title','camp')">Alphabatical -
                                         title</button>
-                                    <button ngbDropdownItem class="btn btn-default" (click)="sortTable('new','camp')">New
+                                    <button ngbDropdownItem class="btn btn-default"
+                                        (click)="sortTable('new','camp')">New
                                     </button>
                                     <button ngbDropdownItem class="btn btn-default"
                                         (click)="sortTable('popular','camp')">Popular</button>
@@ -193,7 +202,7 @@
                                     <div class="swiper-slide"
                                         *ngFor="let campaign of apiData?.campaignList | paginate: { id: 'pagination2', itemsPerPage: 4, currentPage: p1 };let i = index">
                                         <div class="card">
-    
+
                                             <div class="tile" *ngIf="campaign.campaignType == 'image'"
                                                 [ngStyle]="{'background-image': 'url(' + campaign.campaignImageLink + ')'}">
                                             </div>
@@ -218,14 +227,14 @@
                             </swiper>
                         </div>
                         <div class="col-md-12">
-                            <div class="card pagination-card text-center">
-                                <pagination-controls id="pagination2" (pageChange)="getPage(p1 = $event)" previousLabel=""
-                                    nextLabel="">
+                            <div class="card pagination-card text-center mt-2">
+                                <pagination-controls id="pagination2" (pageChange)="getPage(p1 = $event)"
+                                    previousLabel="" nextLabel="">
                                 </pagination-controls>
                             </div>
                         </div>
-                    </ng-container>
-                    
+                    </ng-template>
+
                 </mat-tab>
             </mat-tab-group>
         </div>
