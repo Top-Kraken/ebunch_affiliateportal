@@ -131,9 +131,9 @@ export class DashboardComponent implements OnInit {
           name: this.apiData.campaignEngagement[i].date,
           value: this.apiData.campaignEngagement[i].count
         }
-        arr.push(obj);
+        arr2.push(obj);
       }
-      single2 = arr;
+      single2 = arr2;
       Object.assign(this, {single2})
     })
 
