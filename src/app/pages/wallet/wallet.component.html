@@ -10,7 +10,7 @@
                 <div class="d-flex flex-column">
                     <h4 class="text-sm-center text-md-left">Your Wallet</h4>
                     <div class="d-flex mt-3 justify-content-center">
-                        <span class="tab-amount">{{apiData?.walletPoint}}</span>
+                        <span class="tab-amount">{{apiData?.walletPoint || 0}}</span>
                         <img src="assets/images/wallet-up.png" alt="wallet-up">
                     </div>
                 </div>
@@ -19,13 +19,13 @@
                 <div class="d-flex flex-column mb-2">
                     <h4 class="text-sm-center text-md-left">Pending</h4>
                     <div class="d-flex mt-3 justify-content-center">
-                        <span class="tab-amount">{{apiData?.walletPendingPoint}}</span>
+                        <span class="tab-amount">{{apiData?.walletPendingPoint || 0}}</span>
                         <img src="assets/images/wallet-up.png" alt="wallet-up">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 p-0 px-md-3">
             <div id="yourWallet" class="shadow p-4 bg-white" *ngIf="activeTab == 0">
                 <div class="d-flex justify-content-between">
                     <h2>Your Points</h2>
@@ -48,8 +48,8 @@
                                         <mat-datepicker #picker2></mat-datepicker>
                                     </mat-form-field>
                                 </div>
-                                <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('days')" >7 days</button>
-                                <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('days')">14 days</button>
+                                <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('days', 7)" >7 days</button>
+                                <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('days', 14)">14 days</button>
                                 <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('month')">Month</button>
                                 <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('year')">Year</button>
                             </div>
@@ -90,10 +90,10 @@
                                             <mat-datepicker #picker2></mat-datepicker>
                                         </mat-form-field>
                                     </div>
-                                    <button ngbDropdownItem class="btn btn-default">7 days</button>
-                                    <button ngbDropdownItem class="btn btn-default">14 days</button>
-                                    <button ngbDropdownItem class="btn btn-default">Month</button>
-                                    <button ngbDropdownItem class="btn btn-default">Year</button>
+                                    <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('days',7)">7 days</button>
+                                    <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('days', 14)">14 days</button>
+                                    <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('month')">Month</button>
+                                    <button ngbDropdownItem class="btn btn-default" (click)="getAffiliateWalletData('year')">Year</button>
                                 </div>
                             </div>
                         </div>

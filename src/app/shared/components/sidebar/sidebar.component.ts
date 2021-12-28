@@ -37,7 +37,7 @@ export class SidebarComponent implements OnInit {
 
   }
   openContactUs() {
-    
+    this.router.navigate(['/training',{page:'conatct'}])
   }
   logout(){
     localStorage.clear();

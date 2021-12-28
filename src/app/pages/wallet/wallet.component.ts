@@ -23,7 +23,7 @@ export class WalletComponent implements OnInit {
     this.getAffiliateWalletData('days');
   }
 
-  getAffiliateWalletData(prop: string) {
+  getAffiliateWalletData(prop: string, days?:number) {
     let req;
     if (prop == 'range') {
       req = {
@@ -32,10 +32,18 @@ export class WalletComponent implements OnInit {
         rangeTo: this.endDate
       }
     } else if (prop == 'days') {
-      req = {
-        filter: 'days',
-        totalDays: 7,
+      if(days == 7){
+        req = {
+          filter: 'days',
+          totalDays: 7,
+        }
+      }else if(days == 14){
+        req = {
+          filter: 'days',
+          totalDays: 14,
+        }
       }
+      
     } else if (prop == 'month') {
       req = {
         filter: 'month',
