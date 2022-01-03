@@ -27,6 +27,7 @@ export class ShareModalComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(this.data);
     this.campaign = this.data;
   }
 

@@ -5,6 +5,7 @@ import { InitialDataService } from 'src/app/services/initial-data.service';
 import { SwiperOptions } from 'swiper';
 import { ShareModalComponent } from './share-modal/share-modal.component';
 import { FacebookService, InitParams } from 'ngx-facebook';
+import { Router } from '@angular/router';
 export interface PeriodicElement {
   duration: string;
   title: string;
@@ -100,10 +101,16 @@ export class DashboardComponent implements OnInit {
   constructor(
     private dataService: InitialDataService,
     public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-   
+    this.getInitialData();
+    setInterval(()=>{ 
+      this.setBanner();
+    }, 3000);
+  }
+  getInitialData(){
     let req = {
       bannerPage: 0,
       bannerSize: 10,
@@ -136,10 +143,6 @@ export class DashboardComponent implements OnInit {
       single2 = arr2;
       Object.assign(this, {single2})
     })
-
-    setInterval(()=>{ 
-      this.setBanner();
-    }, 3000);
   }
   setBanner(){
     if(this.p == this.apiData?.bannerList.length){
@@ -189,7 +192,7 @@ export class DashboardComponent implements OnInit {
   openCampaignShareModal(campaign: any) {
     let size = ['675px', '475px'];
     if (window.innerWidth > 786) {
-      size = ['595px', '400px'];
+      size = ['595px', '450px'];
     } else {
       size = ['350px', '600px'];
     }
@@ -202,7 +205,8 @@ export class DashboardComponent implements OnInit {
       disableClose: false
     });
     dialogRef1.afterClosed().subscribe(result => {
-      this.getdashboardData();
+      //this.getdashboardData();
+      this.getInitialData();
     });
   }
 
@@ -221,7 +225,8 @@ export class DashboardComponent implements OnInit {
           if(res.responseCode == 0){
             this.alertMsg.type = 'success';
             this.alertMsg.message = res.successMsg;
-            this.getdashboardData();
+            //this.getdashboardData();
+            this.getInitialData();
           }
           else if (res.responseCode == -1) {
             this.alertMsg.type = 'danger';
@@ -236,5 +241,8 @@ export class DashboardComponent implements OnInit {
       }
       
     });
+  }
+  goToWallet(){
+    this.router.navigateByUrl('/wallet');
   }
 }

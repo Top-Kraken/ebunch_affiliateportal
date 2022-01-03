@@ -8,16 +8,16 @@
     </div>
     <div class="d-flex flex-column flex-md-row justify-content-between">
         <div class="me-2">
-            <div *ngIf="campaign.campaignType=='image'" style="max-width: 300px;">
+            <div *ngIf="campaign.campaignType=='image'" style="width: 200px;">
                 <img [src]="campaign.campaignImageLink" alt="banner" class="img-fluid">
             </div>
-            <div *ngIf="campaign.campaignType=='video'" style="max-width: 300px;">
+            <div *ngIf="campaign.campaignType=='video'" style="width: 200px;">
                 <video width="100%" [poster]="campaign.campaignImageLink" controls>
                     <source [src]="campaign.campaignVideoLink" type="video/mp4">
                 </video>
             </div>
         </div>
-        <div class="pe-4">
+        <div class="ps-2">
             <div>
                 <label>Title</label>
                 <p>{{campaign.campaignName}}</p>
@@ -32,7 +32,7 @@
             </div>
             <div>
                 <label>URL</label>
-                <p>{{campaign.shortUrlLink}}</p>
+                <p style="word-break: break-all;">{{campaign.shortUrlLink}}</p>
             </div>
         </div>
     </div>
