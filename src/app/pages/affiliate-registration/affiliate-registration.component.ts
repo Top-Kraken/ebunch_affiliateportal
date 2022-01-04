@@ -150,7 +150,10 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
           this.alertMsg.type = 'success';
           this.alertMsg.message = res.successMsg;
           localStorage.setItem('token', res.response.token);
-          this.router.navigateByUrl('/login');
+          localStorage.setItem('referalCode', res.response.referalCode);
+          localStorage.setItem('referalReward', res.response.referalReward);
+          localStorage.setItem('userData', JSON.stringify(res.response));
+          this.router.navigateByUrl('/dashboard');
         }
         else if (res.responseCode == -1) {
           this.alertMsg.type = 'danger';
