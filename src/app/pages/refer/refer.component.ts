@@ -38,24 +38,26 @@ export class ReferComponent implements OnInit {
       description: ['']
     });
   }
- 
+
   close() {
     this.alertMsg.message = '';
   }
   sendInvitation() {
-    this.spinner.show();
-    let req = {
-      emailId: this.referForm.value.email.split(','),
-      description: this.referForm.value.description
-    }
-    this.dataService.referFriends(req).subscribe(res => {
-      if (res.responseCode == 0) {
-
-        this.alertMsg.type = 'success';
-        this.alertMsg.message = res.successMsg;
+    if(confirm('Ready to send the email?')){
+      this.spinner.show();
+      let req = {
+        emailId: this.referForm.value.email.split(','),
+        description: this.referForm.value.description
       }
-      this.spinner.hide();
-    });
+      this.dataService.referFriends(req).subscribe(res => {
+        if (res.responseCode == 0) {
+
+          this.alertMsg.type = 'success';
+          this.alertMsg.message = res.successMsg;
+        }
+        this.spinner.hide();
+      });
+    }
   }
   copyCode() {
     this.clipboard.copy(this.referalCode);
