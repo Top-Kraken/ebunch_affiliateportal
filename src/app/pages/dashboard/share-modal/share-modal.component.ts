@@ -27,7 +27,6 @@ export class ShareModalComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.data);
     this.campaign = this.data;
   }
 
@@ -62,7 +61,7 @@ export class ShareModalComponent implements OnInit {
       }else{
         alert("Campaign not shared to facebook")
       }
-     
+
     });
   }
   copyLink() {
