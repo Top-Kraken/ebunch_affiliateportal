@@ -10,10 +10,10 @@
                     <h4 class="text-uppercase text-muted">User Photo</h4>
                     <div class="position-relative m-auto settingImage mb-3"
                         [ngStyle]="{'background-image': 'url(' + selectedUserImgPath + ')'}">
-                        <input #userLogo type="file" id="companyLogoUpload" (change)="onFileChanged($event,'user')"
+                        <input #userLogo type="file" id="companyLogoUpload" [disabled]="!isEditable" (change)="onFileChanged($event,'user')"
                             style="display:none" accept="image/*" />
                         <div class="camera-icon">
-                            <img src="assets/images/camera.png" alt="camera" (click)="userLogo.click()">
+                            <img src="assets/images/camera.png" alt="camera"  (click)="isEditable ? userLogo.click(): false">
                         </div>
                     </div>
                 </div>
@@ -24,42 +24,42 @@
                 <div class="form-group mt-3">
                     <div class="col">
                         <label>First Name</label>
-                        <input type="text" matInput class="form-control" formControlName="firstName"
-                            placeholder="ADDRESS LINE 1">
+                        <input type="text" matInput class="form-control" formControlName="firstName" [disabled]="!isEditable"
+                            placeholder="First Name">
                     </div>
                     <div class="col">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" formControlName="lastName" placeholder="Last name">
+                        <input type="text" class="form-control" formControlName="lastName" placeholder="Last name" [disabled]="!isEditable">
                     </div>
                 </div>
                 <div class="form-group d-flex flex-column flex-md-row">
                     <div class="col me-md-2">
                         <label for="">Personal Email</label>
                         <input type="text" class="form-control mb-3 mb-md-0 mb-lg-2 me-md-2"
-                            placeholder="User Email" formControlName="email">
+                            placeholder="User Email" formControlName="email" [disabled]="!isEditable">
                     </div>
                     <div class="col ms-md-2">
                         <label for="">Personal Phone</label>
-                        <input matInput type="tel" class="form-control" id="personalPhone" placeholder="User Phone"
+                        <input matInput type="tel" class="form-control" id="personalPhone" placeholder="User Phone" [disabled]="!isEditable"
                             formControlName="phone">
                     </div>
                 </div>
                 <div class="form-group mt-md-3">
                     <label for="">Interest</label>
-                    <ng-select [items]="interests" bindLabel="industryName" placeholder="Interest Area"
+                    <ng-select [items]="interests" bindLabel="industryName" placeholder="Interest Area" [disabled]="isEditable"
                         [multiple]="true" formControlName="intrestAreaList" bindValue="industryId">
                     </ng-select>
                 </div>
                 <div class="form-group mt-md-3">
                     <label for="">Company</label>
-                    <ng-select [items]="companies" bindLabel="companyName" placeholder="Company Name"
+                    <ng-select [items]="companies" bindLabel="companyName" placeholder="Company Name" [disabled]="isEditable"
                         [multiple]="true" formControlName="companyList" bindValue="companyId">
                     </ng-select>
                 </div>
-              
+
                 <div class="form-group d-flex my-5">
                     <div class="flex-grow-1 text-center">
-                        <button class="btn btn-password w-75 mx-auto" (click)="openChangePasswordDialog()">Change
+                        <button class="btn btn-password w-75 mx-auto" (click)="openChangePasswordDialog()" [disabled]="!isEditable">Change
                             Password</button>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
         </div>
         <div class="col-md-4"></div>
         <div class="col-md-8 text-center mt-3">
-            <button class="btn btn-secondary me-3" (click)="resetForm()">Reset</button>
+            <button class="btn btn-secondary me-3" (click)="enableEdit()">Edit</button>
             <button class="btn btn-dark btn-save" (click)="updateChanges()">Save Changes</button>
         </div>
     </div>

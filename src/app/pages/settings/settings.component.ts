@@ -7,7 +7,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  styleUrls: ['./settings.component.css'],
 })
 export class SettingsComponent implements OnInit {
   profileForm: FormGroup;
@@ -16,7 +16,7 @@ export class SettingsComponent implements OnInit {
   states: any;
   alertMsg: any = {
     type: '',
-    message: ''
+    message: '',
   };
   userData: any;
 
@@ -29,14 +29,16 @@ export class SettingsComponent implements OnInit {
   selectedUserImgPath: any = 'assets/images/profile-pic.png';
   companies: any[] = [];
   interests: any[] = [];
+  isEditable: boolean = false;
   constructor(
     private _formBuilder: FormBuilder,
     private dataService: InitialDataService,
     public dialog: MatDialog,
     private spinner: NgxSpinnerService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
+    this.isEditable = false;
     this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
     this.selectedCompanyLogoPath = this.userData.userImage;
     this.selectedUserImgPath = this.userData.userImage;
@@ -50,14 +52,15 @@ export class SettingsComponent implements OnInit {
       email: [this.userData.email, [Validators.required, Validators.email]],
       phone: [this.userData.phone, Validators.required],
       intrestAreaList: [this.userData.intrestAreaList],
-      companyList: [this.userData.companyList]
+      companyList: [this.userData.companyList],
     });
-    this.dataService.getCompanyList().subscribe(data => {
+    this.dataService.getCompanyList().subscribe((data) => {
       this.companies = data.response.companyList;
     });
-    this.dataService.getIntrestArea().subscribe(data => {
+    this.dataService.getIntrestArea().subscribe((data) => {
       this.interests = data.response.intrestList;
     });
+    this.disableEdit();
   }
 
   onFileChanged(event: any, type: string) {
@@ -67,13 +70,11 @@ export class SettingsComponent implements OnInit {
     reader.readAsDataURL(this.selectedUserImg);
     reader.onload = (_event) => {
       this.selectedUserImgPath = reader.result;
-    }
+    };
   }
-  submit() {
-
-  }
+  submit() {}
   close() {
-    this.alertMsg.message = ''
+    this.alertMsg.message = '';
   }
   openChangePasswordDialog() {
     let size = ['375px', '375'];
@@ -87,12 +88,11 @@ export class SettingsComponent implements OnInit {
       maxHeight: size[1],
       height: '100%',
       width: '100%',
-      data: "h",
-      disableClose: false
+      data: 'h',
+      disableClose: false,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 
   updateChanges() {
@@ -102,34 +102,48 @@ export class SettingsComponent implements OnInit {
       let obj = {
         facebookLink: this.facebookLink,
         linkedinLink: this.linkedinLink,
-        instaLink: this.instaLink
-      }
-      // 
+        instaLink: this.instaLink,
+      };
+      //
       //update profile info
       let formData = new FormData();
       formData.append('data', JSON.stringify(this.profileForm.value));
       formData.append('userPhoto', this.selectedUserImg);
-      this.dataService.updateAffiliateSetting(formData).subscribe( res =>{
+      this.dataService.updateAffiliateSetting(formData).subscribe((res) => {
         if (res.responseCode == -1) {
           this.alertMsg.type = 'danger';
-          this.alertMsg.message = res.errorMsg
+          this.alertMsg.message = res.errorMsg;
         } else if (res.responseCode == 0) {
-
           this.profileForm.patchValue(res.response);
           localStorage.setItem('userData', JSON.stringify(res.response));
           this.dataService.isSettingChanged.next(true);
+          this.disableEdit();
           this.alertMsg.message = res.successMsg;
-
         } else {
           this.alertMsg.type = 'danger';
-          this.alertMsg.message = "Server error"
+          this.alertMsg.message = 'Server error';
         }
         this.spinner.hide();
-      })
+      });
     }
   }
-  resetForm(){
-    this.profileForm.reset();
+  enableEdit() {
+    this.isEditable = true;
+    this.profileForm.controls['firstName'].enable();
+    this.profileForm.controls['lastName'].enable();
+    this.profileForm.controls['email'].enable();
+    this.profileForm.controls['phone'].enable();
+    this.profileForm.controls['intrestAreaList'].enable();
+    this.profileForm.controls['companyList'].enable();
   }
 
+  disableEdit() {
+    this.isEditable = false;
+    this.profileForm.controls['firstName'].disable();
+    this.profileForm.controls['lastName'].disable();
+    this.profileForm.controls['email'].disable();
+    this.profileForm.controls['phone'].disable();
+    this.profileForm.controls['intrestAreaList'].disable();
+    this.profileForm.controls['companyList'].disable();
+  }
 }

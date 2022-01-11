@@ -60,10 +60,25 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
       userName: [null, Validators.required],
       firstName: ['', Validators.required],
       lastName: [null, Validators.required],
-      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      password: ['', Validators.required],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ],
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+          ),
+        ],
+      ],
       phone: ['', Validators.required],
-      referalCode : ['']
+      referalCode: [''],
     });
     this.regForm2 = this._formBuilder.group({
       companyList: [''],
@@ -84,7 +99,7 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
       this.regForm1.controls.password.setValidators(null);
       this.regForm1.controls.password.updateValueAndValidity();
     }
-    
+
     // this.secondFormGroup = this._formBuilder.group({
     //   secondCtrl: ['', Validators.required]
     // });
@@ -95,10 +110,12 @@ export class AffiliateRegistrationComponent implements OnInit, AfterViewInit {
     // };
     // this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
   }
-  
+  get f1() {
+    return this.regForm1.controls;
+  }
   ngAfterViewInit() {
     this.stepper._getIndicatorType = () => 'none';
-    
+
   }
   onUsernameEnter(eve:any){
     let username = eve.target.value;
