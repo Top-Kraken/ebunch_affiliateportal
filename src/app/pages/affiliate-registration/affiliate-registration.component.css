@@ -124,7 +124,7 @@ textarea::placeholder {
     font-size: 24px;
     vertical-align: middle;
     margin-left: 10px;
-    
+
 }
 .uploadIcon{
     width:80%;
@@ -203,7 +203,7 @@ agm-map{
         bottom:0;
     }
     .form-group{
-        margin-bottom: 18px;
+        margin-bottom: 10px;
     }
     ::ng-deep .mat-stepper-horizontal{
         margin-right: 5rem !important;
@@ -221,9 +221,9 @@ agm-map{
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { 
+@media (min-width: 1200px) {
     .form-group{
-        margin-bottom: 1rem;
+        margin-bottom: 14px;
     }
     .btn-back{
         margin-right: 6px;
@@ -236,7 +236,7 @@ agm-map{
 /* XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
     .form-group{
-        margin-bottom: 2.3rem;
+        margin-bottom: 18px;
     }
     .btn-back{
         margin-right: 6px;
@@ -249,7 +249,7 @@ agm-map{
 /* XXX-Large devices (larger desktops, 1800px and up) */
 @media (min-width: 1800px) {
     .form-group{
-        margin-bottom: 3rem;
+        margin-bottom: 1rem;
     }
     input{
         font-size: 18px;
@@ -289,7 +289,7 @@ agm-map{
         position: fixed;
         bottom:0
     }
-    
+
 }
 @media screen and (device-aspect-ratio: 40/71) {
     .header{

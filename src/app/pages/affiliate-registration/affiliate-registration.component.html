@@ -66,7 +66,7 @@
                     onkeypress="return /[a-z]/i.test(event.key)" formControlName="lastName">
                 </div>
               </div>
-              <div class="form-group d-flex flex-md-row">
+              <div class="form-group d-flex flex-md-row mb-md-0">
                 <div class="col me-2">
                   <input type="text" class="form-control mb-3 mb-md-0 mb-lg-2 me-md-2" id="personalEmail"
                     placeholder="Email" formControlName="email">
@@ -89,6 +89,14 @@
               <div class="form-group">
                 <input matInput type="text" class="form-control" placeholder="Referal Code (optional)"
                   formControlName="referalCode">
+              </div>
+              <div class="form-group mt-3">
+                <p class="mb-0">Password must contain: </p>
+                <p class="mb-0">At least 8 characters.</p>
+                <p class="mb-0">At least 3 of the following: uppercase, lowercase, numeric, or special characters. </p>
+                <p class="mb-0">
+                  The allowed special characters are ~ ! @ # $ % ^ * - _ = + [ &#123; ] &#125; /  : , . ? [no spaces allowed!]
+                </p>
               </div>
               <div class="d-grid mt-4">
                 <button mat-button matStepperNext class="btn btn-dark mb-5 mb-md-0"
